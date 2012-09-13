@@ -1,0 +1,106 @@
+# -*- shell-script -*-
+# .environment - environment settings for all systems and hosts
+
+    BLACK='\[\e[00;30m\]'
+     GRAY='\[\e[01;30m\]'
+      RED='\[\e[00;31m\]'
+    L_RED='\[\e[01;31m\]'
+     PINK='\[\e[01;31m\]'
+    GREEN='\[\e[00;32m\]'
+  L_GREEN='\[\e[01;32m\]'
+   YELLOW='\[\e[00;33m\]'
+ L_YELLOW='\[\e[01;33m\]'
+     BLUE='\[\e[00;34m\]'
+   L_BLUE='\[\e[01;34m\]'
+   PURPLE='\[\e[00;35m\]'
+ L_PURPLE='\[\e[01;35m\]'
+     CYAN='\[\e[00;36m\]'
+   L_CYAN='\[\e[01;36m\]'
+   L_GRAY='\[\e[00;37m\]'
+    WHITE='\[\e[01;37m\]'
+
+     BOLD="\[\e[01m\]"
+     NONE="\[\e[00m\]"
+
+function prompt_fn
+{
+    branch="$(git symbolic-ref --quiet --short HEAD 2> /dev/null)"
+
+    if [ -n "$branch" ]; then
+        if git diff-index --quiet --cached HEAD --ignore-submodules -- 2> /dev/null && git diff-files --quiet --ignore-submodules 2> /dev/null; then
+            git_info="$GREEN[$branch]"
+        else
+            local w=""
+            local i=""
+            local u=""
+            local s=""
+            git diff --no-ext-diff --quiet --exit-code 2> /dev/null || w="⚡"
+			if git rev-parse --quiet --verify HEAD > /dev/null; then
+				git diff-index --cached --quiet HEAD -- || i="+"
+			else
+				i="#"
+			fi
+            if [ -n "$(git ls-files --others --exclude-standard 2> /dev/null)" ]; then
+			      u="?"
+			fi
+            git rev-parse --verify refs/stash >/dev/null 2>&1 && s="★"
+            git_info="$RED$BOLD[$branch$i$w$u$s]"
+        fi
+        local counts="$(git rev-list --left-right --count @{upstream}...HEAD 2> /dev/null)"
+        if [ -n "$counts" ]; then
+            case "$counts" in
+                "0	0")
+                # equal to upstream
+                    git_info+="${GREEN}≍";;
+		        "0	"*)
+                # ahead of upstream
+                    git_info+="${YELLOW}${counts#0	}↑" ;;
+		        *"	0")
+                # behind upstream
+                    git_info+="${RED}${counts%	0}↓" ;;
+		        *)
+                # diverged from upstream
+			        git_info+="${RED}${counts#*	}-${counts%	*}⇅" ;;
+		    esac
+        fi
+    else
+        git_info=""
+    fi
+    PS1="
+${GREEN}\u@\h:${YELLOW}\w${NONE} ${git_info}${NONE}
+\$ "
+}
+
+export PROMPT_COMMAND=prompt_fn
+
+unset USERNAME
+
+export HISTCONTROL=erasedups
+export HISTSIZE=100000
+
+shopt -s autocd
+shopt -s cdable_vars
+shopt -s cdspell
+shopt -s checkjobs
+shopt -s dirspell
+shopt -s globstar
+shopt -s histappend
+shopt -s no_empty_cmd_completion
+
+export TERM=xterm-256color
+
+export CVS_RSH=ssh
+
+export NLS_LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
+export PAGER=less
+export EDITOR="emacs -nw"
+
+export GREP_OPTIONS='--color=auto'
+
+export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin
+export MANPATH=/usr/local/man:/usr/local/share/man:/usr/man:/usr/share/man
+
+export LD_LIBRARY_PATH=$HOME/lib:/usr/local/lib:/usr/lib
+

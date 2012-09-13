@@ -1,0 +1,14 @@
+
+(require :asdf)
+
+(pushnew "/Users/kmb/lisp/" asdf:*central-registry* :test #'equal)
+
+(require :asdf-install)
+
+;;; The following lines added by ql:add-to-init-file:
+#-quicklisp
+(let ((quicklisp-init (merge-pathnames "lisp/quicklisp/setup.lisp" (user-homedir-pathname))))
+  (when (probe-file quicklisp-init)
+    (load quicklisp-init)))
+
+

@@ -1,0 +1,23 @@
+# first tab suggests ambiguous variants
+set show-all-if-ambiguous on
+#
+# bell setup
+set bell-style none
+set prefer-visible-bell
+
+# show file types while completing
+set visible-stats on
+
+# Be 8 bit clean.
+set input-meta on
+set output-meta on
+
+# To allow the use of 8bit-characters like the german umlauts, comment out
+# the line below. However this makes the meta key not work as a meta key,
+# which is annoying to those which don't need to type in 8-bit characters.
+set convert-meta off
+
+# # ask before displaying more than 100 completions
+set completion-query-item 100
+
+

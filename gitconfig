@@ -1,0 +1,40 @@
+[merge]
+    tool = emerge
+
+[alias]
+    ci = commit
+    co = checkout
+    st = status
+    w = whatchanged
+    ri = rebase --interactive --autosquash
+    l = log --oneline --graph --decorate --all
+
+[color]
+    ui = auto
+    branch = auto
+    diff = auto
+    grep = auto
+    interactive = auto
+    showbranch = auto
+    status = auto
+    pager = true
+
+[http]
+    sslVerify = false
+
+[diff]
+    renames = copies
+    renameLimit = 100000
+
+[core]
+    autocrlf = input
+
+[github]
+    user = kevinbirch
+
+[user]
+    name = kevin birch
+
+[include]
+    path = ~/.gitconfig.host
+
