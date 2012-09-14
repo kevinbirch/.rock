@@ -5,8 +5,6 @@ DRY_RUN=0
 
 DIR=$(dirname $0)
 
-DOTS="MacOSX alias bash_logout bash_profile bashrc config dircolors environment gitconfig gitk inputrc profile sbclrc screenrc"
-
 function usage
 {
     cat <<EOF
@@ -30,7 +28,9 @@ function say
 function maybe
 {
     if [ 0 -eq $DRY_RUN ]; then
-        eval $@
+        eval $@ > /dev/null
+    else
+        echo "$@"
     fi
 }
 
@@ -42,6 +42,14 @@ function connect
     fi
     say "linking $2 -> $1"
     maybe ln -s $1 $2
+}
+
+function connect-dir
+{
+    for f in $(ls $1)
+    do
+        connect ~+/$1/$f ~/.$f
+    done
 }
 
 while getopts "hvde:" opt; do
@@ -74,19 +82,23 @@ done
 
 cd $DIR
 
-for f in $DOTS
-do
-    if [ -e $f ]; then
-        connect "$(pwd)/$f" ~/.$f
-    fi
-done
+say "linking common files"
+connect-dir common
+
+say "linking platform specific files"
+# get the OS name in portable way, make it lower case and drop everything after an underscore or dash
+OS=$(uname -s | tr "[:upper:]" "[:lower:]" | sed 's/\([^-_]*\)[-_].*/\1/')
+
+if [ -d plaf/$OS ]; then
+    connect-dir plaf/$OS
+fi
 
 say "taking an excursion to $HOME"
-pushd ~ > /dev/null
+maybe pushd ~
 connect .emacs.d/init.el .emacs
 connect .vim/vimrc .vimrc
 say "returning from excursion"
-popd > /dev/null
+maybe popd
 
 if [ -z "$email" ]; then
     read -e -p "Enter email [$USER@$HOSTNAME]: " email

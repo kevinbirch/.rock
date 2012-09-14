@@ -3,7 +3,7 @@
 VERBOSE=0
 DRY_RUN=0
 
-DOTS="MacOSX alias bash_logout bash_profile bashrc config dircolors environment gitconfig gitk inputrc profile sbclrc screenrc"
+DIR=$(dirname $0)
 
 function usage
 {
@@ -33,6 +33,29 @@ function maybe
     fi
 }
 
+function disconnect
+{
+    if [ -e ~/.${1}\~ ] && [ -L ~/.${1} ]; then
+        say "replacing ~/.${1} with backup"
+        if [ -d ~/.${1}\~ ]; then
+            maybe rm ~/.${1}
+        fi
+        maybe mv ~/.${1}\~ ~/.$1
+    elif [ -L ~/.${1} ]; then
+        say "removing link for ~/.${1}"
+        maybe rm ~/.${1}
+    fi
+
+}
+
+function disconnect-dir
+{
+    for f in $(ls $1)
+    do
+        disconnect $f
+    done
+}
+
 while getopts "hvde:" opt; do
     case $opt in
         v)
@@ -53,20 +76,19 @@ while getopts "hvde:" opt; do
     esac
 done
 
-cd ~
+cd $DIR
 
-for f in $DOTS
-do
-    if [ -e .${f}\~ ] && [ -L .${f} ]; then
-        say "replacing .${f} with backup"
-        if [ -d .${f}\~ ]; then
-            maybe rm .${f}
-        fi
-        maybe mv .${f}\~ .$f
-    elif [ -L .${f} ]; then
-        say "removing link for .${f}"
-        maybe rm .${f}
-    fi
-done
+say "unlinking common files"
+disconnect-dir common
 
+# get the OS name in portable way, make it lower case and drop everything after an underscore or dash
+OS=$(uname -s | tr "[:upper:]" "[:lower:]" | sed 's/\([^-_]*\)[-_].*/\1/')
+
+say "unlinking platform specific files"
+if [ -d plaf/$OS ]; then
+    disconnect-dir plaf/$OS
+fi
+
+disconnect emacs
+disconnect vimrc
 
