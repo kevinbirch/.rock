@@ -32,7 +32,7 @@ function prompt_fn
             if [ -n "$(git ls-files --others --exclude-standard 2> /dev/null)" ]; then
 			      u="?"
 			fi
-            git_info="$GREEN[$branch$u]"
+            git_info="$GREEN[$branch$RED$u$GREEN]"
         else
             local w=""
             local i=""
