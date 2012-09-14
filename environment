@@ -28,7 +28,11 @@ function prompt_fn
 
     if [ -n "$branch" ]; then
         if git diff-index --quiet --cached HEAD --ignore-submodules -- 2> /dev/null && git diff-files --quiet --ignore-submodules 2> /dev/null; then
-            git_info="$GREEN[$branch]"
+            local u=""
+            if [ -n "$(git ls-files --others --exclude-standard 2> /dev/null)" ]; then
+			      u="?"
+			fi
+            git_info="$GREEN[$branch$u]"
         else
             local w=""
             local i=""
