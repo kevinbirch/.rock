@@ -34,10 +34,10 @@ function prompt_fn
 			fi
             git_info="$GREEN[$branch$RED$u$GREEN]"
         else
-            local w=""
-            local i=""
-            local u=""
-            local s=""
+            local w="" # modified
+            local i="" # staged
+            local u="" # untracked
+            local s="" # stashed
             git diff --no-ext-diff --quiet --exit-code 2> /dev/null || w="⚡"
 			if git rev-parse --quiet --verify HEAD > /dev/null; then
 				git diff-index --cached --quiet HEAD -- || i="+"
