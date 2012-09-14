@@ -2,33 +2,41 @@
 # .bashrc - dot rockin' it on the C-to-the-L-to-the-I
 
 if [ -z "$PS1" ]; then
-	return
+    return
 fi
 
 if [ -f /etc/bash.bashrc ]; then
-	. /etc/bash.bashrc
+    . /etc/bash.bashrc
 elif [ -f /etc/bashrc ]; then
-	. /etc/bashrc
+    . /etc/bashrc
 fi
 
 if [ -f ~/.environment ]; then
-	. ~/.environment
+    . ~/.environment
 fi
 
 if [ -f ~/.environment.host ]; then
-	. ~/.environment.host
+    . ~/.environment.host
 fi
 
 if [ -f ~/.alias ]; then
-	. ~/.alias
+    . ~/.alias
 fi
 
-if [ -e ~/.alias.host ]; then
-	. ~/.alias.host
+if [ -f /usr/local/etc/bash_completion ]; then
+    . /usr/local/etc/bash_completion
+elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
 fi
 
-if [ -f ~/.dircolors ]; then
-	eval `dircolors -b ~/.dircolors`
+# xxx - this doesn't work well
+# if [ -f ~/.dircolors ]; then
+# 	dircolors -b ~/.dircolors
+# fi
+
+# N.B. - This must come after any completions are sourced, as they make assumptions about the behavior of commands
+if [ -f ~/.alias.host ]; then
+    . ~/.alias.host
 fi
 
 function up
@@ -67,10 +75,4 @@ function extract
         echo "'$1' is not a valid file"
     fi
 }
-
-if [ -f /usr/local/etc/bash_completion ]; then
-    . /usr/local/etc/bash_completion
-elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-fi
 
