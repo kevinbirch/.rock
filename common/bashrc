@@ -15,12 +15,12 @@ if [ -f ~/.environment ]; then
     . ~/.environment
 fi
 
-if [ -f ~/.environment.host ]; then
-    . ~/.environment.host
+if [ -f ~/.environment.plaf ]; then
+    . ~/.environment.plaf
 fi
 
-if [ -f ~/.alias ]; then
-    . ~/.alias
+if [ -f ~/.environment.host ]; then
+    . ~/.environment.host
 fi
 
 if [ -f /usr/local/etc/bash_completion ]; then
@@ -35,6 +35,14 @@ fi
 # fi
 
 # N.B. - This must come after any completions are sourced, as they make assumptions about the behavior of commands
+if [ -f ~/.alias ]; then
+    . ~/.alias
+fi
+
+if [ -f ~/.alias.plaf ]; then
+    . ~/.alias.plaf
+fi
+
 if [ -f ~/.alias.host ]; then
     . ~/.alias.host
 fi

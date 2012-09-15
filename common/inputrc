@@ -1,23 +1,43 @@
+
+# Allow the command prompt to wrap to the next line
+set horizontal-scroll-mode off
+
 # first tab suggests ambiguous variants
 set show-all-if-ambiguous on
-#
+
 # bell setup
 set bell-style none
 set prefer-visible-bell
 
-# show file types while completing
-set visible-stats on
-
 # Be 8 bit clean.
 set input-meta on
 set output-meta on
+set enable-meta-key on
 
 # To allow the use of 8bit-characters like the german umlauts, comment out
 # the line below. However this makes the meta key not work as a meta key,
 # which is annoying to those which don't need to type in 8-bit characters.
 set convert-meta off
 
-# # ask before displaying more than 100 completions
+set visible-stats on
+set completion-ignore-case on
+set completion-prefix-display-length 4
+set skip-completed-text on
+set show-all-if-modified on
+set print-completions-horizontally on
+set mark-symlinked directories on
+set mark-directories on
+set mark-modified-lines on
+
+# ask before displaying more than 100 completions
 set completion-query-item 100
 
+set page-completions on
 
+set editing-mode emacs
+# how to unbind some commands from this file?
+# unbind previous/next history except from meta
+
+set keymap emacs-meta
+p:previous-history
+n:next-history
