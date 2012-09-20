@@ -19,6 +19,7 @@ set enable-meta-key on
 # which is annoying to those which don't need to type in 8-bit characters.
 set convert-meta off
 
+set blink-matching-paren on
 set visible-stats on
 set completion-ignore-case on
 set completion-prefix-display-length 4
@@ -35,9 +36,7 @@ set completion-query-item 100
 set page-completions on
 
 set editing-mode emacs
-# how to unbind some commands from this file?
-# unbind previous/next history except from meta
-
+  
 set keymap emacs-meta
 p:previous-history
 n:next-history
