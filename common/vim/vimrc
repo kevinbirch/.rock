@@ -1,0 +1,92 @@
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" General
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vim behavior, not vi
+" This must be first, because it changes other options as side effect
+set nocompatible
+
+" load pathogen bundle manager
+call pathogen#infect()
+
+" enable 256 color terminal mode
+set t_Co=256
+
+" enable line numbers
+set number
+
+" Indent automatically depending on filetype
+filetype plugin indent on
+
+" Case insensitive search
+set ic
+
+" Higlhight search
+set hls
+
+" Wrap text instead of being on one line
+set lbr
+
+" Number of lines of history to remember
+set history=1000
+
+" Number of levels of undo history
+set undolevels=1000
+
+" Ignore these file extensions when completing names by pressing Tab
+set wildignore=*.swp,*.bak,*.class
+
+" Disable these characters as word dividers
+set iskeyword+=_
+
+" Make searches case-insensitive, unless they contain upper-case letters
+set ignorecase
+set smartcase
+
+" Allow backspacing over autoindent, line breaks (join lines), start of insert
+set backspace=indent,eol,start
+
+" Write the contents of the file, if it has been modified, after certain
+" commands
+set autowrite
+
+" Affects the output of :TOhtml
+:let html_use_css = 1
+:let use_xhtml = 1
+
+" store status information
+set viminfo='1000,f1,<500,%
+
+set tabstop=4
+set autoindent
+set expandtab
+set shiftwidth=4
+
+" load syntax highlighter and color theme
+syntax on
+syntax enable
+
+set background=dark
+let g:solarized_termcolors=256
+colorscheme solarized
+
+" With a map leader it's possible to do extra key combinations
+" like <leader>w saves the current file
+let mapleader = ","
+let g:mapleader = ","
+
+" When vimrc is edited, reload it
+autocmd! bufwritepost vimrc source ~/.vim/vimrc
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Edit Shortcuts
+" http://vimcasts.org/episodes/the-edit-command/
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+cnoremap %% <C-R>=expand('%:h').'/'<cr>
+map <leader>ew :e %%
+map <leader>es :sp %%
+map <leader>ev :vsp %%
+map <leader>et :tabe %%
+

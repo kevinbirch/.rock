@@ -1,0 +1,9 @@
+[submodule "common/vim/bundle/vim-markdown"]
+	path = common/vim/bundle/vim-markdown
+	url = git://github.com/tpope/vim-markdown.git
+[submodule "common/vim/bundle/vim-fugitive"]
+	path = common/vim/bundle/vim-fugitive
+	url = git://github.com/tpope/vim-fugitive.git
+[submodule "common/vim/pathogen"]
+	path = common/vim/pathogen
+	url = git://github.com/tpope/vim-pathogen.git
