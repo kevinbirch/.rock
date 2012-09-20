@@ -7,3 +7,6 @@
 [submodule "common/vim/pathogen"]
 	path = common/vim/pathogen
 	url = git://github.com/tpope/vim-pathogen.git
+[submodule "common/vim/bundle/vim-eunuch"]
+	path = common/vim/bundle/vim-eunuch
+	url = git://github.com/tpope/vim-eunuch.git
