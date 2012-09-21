@@ -12,9 +12,11 @@ getmail 4.33.0
 gettext 0.18.1.1
 gfortran 4.2.4-5666.3
 gist 3.1.0
-git 1.7.12
+git 1.7.12.1
+glib 2.32.4
 gnu-sed 4.2.1
 gnupg 1.4.12
+gnutls 2.12.20
 htop HEAD
 hub 1.10.2
 imagemagick 6.7.7-6
@@ -22,6 +24,10 @@ ispell 3.3.02
 jasper 1.900.1
 jbig2dec 0.11
 jpeg 8d
+libffi 3.0.11
+libgcrypt 1.5.0
+libgpg-error 1.10
+libtasn1 2.13
 libtiff 4.0.2
 libyaml 0.1.4
 lighttpd 1.4.31
@@ -32,17 +38,19 @@ mongodb 2.2.0-x86_64
 multimarkdown 3.6
 mutt 1.5.21
 ncftp 3.2.5
+p11-kit 0.13
 pcre 8.31
 pkg-config 0.27.1
 plt-racket 5.2
 python 2.7.3
 python3 3.2.3
+qemu 1.2.0
 r 2.15.1
 rc 1.7.2
 readline 6.2.2 6.2.4
 ruby 1.9.3-p194
 sbcl 1.0.58
-sqlite 3.7.13
+sqlite 3.7.14
 tokyo-cabinet 1.4.47
 unrar 4.2.4
 wget 1.14
