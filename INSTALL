@@ -1,0 +1,29 @@
+# -*- markdown -*-
+Copyright (c) 2012 Kevin Birch <kmb@pobox.com>
+
+To install, simply run the included install script:
+
+    ./install.sh
+ 
+ The following optins are supported by the installer:
+
+     usage: install.sh [options]
+
+         -e <email>    setting for gitconfig user.email (if this is given, you will not be prompted for it)
+         -d            dry-run, do not make any changes (useful with verbose setting)
+         -v            be verbose; explain each action to be taken
+
+         -h            print this help message
+ 
+ If you decide you don't want this after all, you can revert all of the changes using the uninstaller:
+
+     ./uninstall.sh
+ 
+The following options are supported by the uninstaller:
+
+    usage: uninstall.sh [options]
+
+        -d            dry-run, do not make any changes (useful with verbose setting)
+        -v            be verbose; explain each action to be taken
+
+        -h            print this help message
