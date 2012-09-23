@@ -19,7 +19,6 @@
    L_GRAY='\[\e[00;37m\]'
     WHITE='\[\e[01;37m\]'
 
-     BOLD="\[\e[01m\]"
      NONE="\[\e[00m\]"
 
 function prompt_fn
@@ -48,7 +47,7 @@ function prompt_fn
 			      u="?"
 			fi
             git rev-parse --verify refs/stash >/dev/null 2>&1 && s="★"
-            git_info="$RED$BOLD[$branch$i$w$u$s]"
+            git_info="$RED[$branch$i$w$u$s]"
         fi
         local counts="$(git rev-list --left-right --count @{upstream}...HEAD 2> /dev/null)"
         if [ -n "$counts" ]; then

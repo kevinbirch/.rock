@@ -29,11 +29,6 @@ elif [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
 
-# xxx - this doesn't work well
-# if [ -f ~/.dircolors ]; then
-# 	dircolors -b ~/.dircolors
-# fi
-
 # N.B. - This must come after any completions are sourced, as they make assumptions about the behavior of commands
 if [ -f ~/.alias ]; then
     . ~/.alias
@@ -45,6 +40,10 @@ fi
 
 if [ -f ~/.alias.host ]; then
     . ~/.alias.host
+fi
+
+if [ -f ~/.dircolors ]; then
+    eval $(dircolors -b ~/.dircolors)
 fi
 
 function up

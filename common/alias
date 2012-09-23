@@ -37,7 +37,8 @@ alias timestamp='date +"%Y-%m-%dT%H:%M:%S%z"'
 
 alias htop="htop --sort-key PERCENT_CPU -d 20 -u `whoami`"
 
-alias gl='git log'
+alias gl='git log --oneline --graph --decorate --all'
+alias gd='git diff'
 alias gs='git status'
 alias ga='git add'
 alias gcm='git commit -m'
