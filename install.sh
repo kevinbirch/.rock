@@ -100,6 +100,12 @@ connect .vim/vimrc .vimrc
 say "returning from excursion"
 maybe popd
 
+say "fixing up quicklisp client pointers"
+maybe pushd $DIR/common/quicklisp
+connect ../quicklisp-client quicklisp
+say "done"
+maybe popd
+
 if [ -z "$email" ]; then
     read -e -p "Enter email [$USER@$HOSTNAME]: " email
     test -z $email && email="$USER@$HOSTNAME"

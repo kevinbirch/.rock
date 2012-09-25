@@ -16,3 +16,12 @@
 [submodule "dircolors-solarized"]
 	path = dircolors-solarized
 	url = git://github.com/seebi/dircolors-solarized.git
+[submodule "common/lisp/quicklisp"]
+	path = common/lisp/quicklisp
+	url = git://github.com/quicklisp/quicklisp-bootstrap.git
+	ignore = dirty
+[submodule "common/lisp/quicklisp-client"]
+	path = common/lisp/quicklisp-client
+	url = git://github.com/quicklisp/quicklisp-client.git
+	ignore = dirty
+
