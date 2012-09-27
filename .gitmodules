@@ -46,3 +46,6 @@
 [submodule "common/lisp/emacs/site-packages/dylan-mode"]
 	path = common/lisp/emacs/site-packages/dylan-mode
 	url = git://github.com/dylan-lang/dylan-mode.git
+[submodule "common/lisp/emacs/site-packages/redshank"]
+	path = common/lisp/emacs/site-packages/redshank
+	url = http://www.foldr.org/~michaelw/projects/redshank.git

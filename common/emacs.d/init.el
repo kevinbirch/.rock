@@ -168,7 +168,7 @@
 (add-hook 'slime-repl-mode-hook 'override-slime-repl-bindings-with-paredit)
 
 ;; redshank configuration
-;;(require 'redshank-loader (expand-file-name "~/.lisp/emacs/packages/redshank/redshank-loader"))
+(require 'redshank-loader (expand-file-name "~/.lisp/emacs/site-packages/redshank/redshank-loader"))
 
 (eval-after-load "redshank-loader"
   `(redshank-setup '(lisp-mode-hook
