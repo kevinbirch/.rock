@@ -216,6 +216,7 @@
 (require 'color-theme)
 (require 'color-theme-solarized)
 (color-theme-solarized-dark)
+(set-default 'cursor-type 'box)
 
 ;; Spelling checker customizations
 (setq-default ispell-program-name "aspell")
