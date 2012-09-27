@@ -1,8 +1,8 @@
 
 ;; add additional load paths
 (add-to-list 'load-path (expand-file-name "~/.lisp/emacs/site-lisp"))
-(add-to-list 'load-path (expand-file-name "~/.lisp/emacs/slime/contrib"))
-(add-to-list 'load-path (expand-file-name "~/.lisp/emacs/slime"))
+(add-to-list 'load-path (expand-file-name "~/.lisp/emacs/site-packages/slime/contrib"))
+(add-to-list 'load-path (expand-file-name "~/.lisp/emacs/site-packages/slime"))
 (add-to-list 'load-path (expand-file-name "~/.lisp/emacs/site-packages/emacs-color-theme-solarized"))
 (add-to-list 'load-path (expand-file-name "~/.lisp/emacs/site-packages/dylan-mode"))
 

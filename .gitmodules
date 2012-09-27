@@ -31,6 +31,24 @@
 [submodule "common/lisp/emacs/site-packages/dylan-mode"]
 	path = common/lisp/emacs/site-packages/dylan-mode
 	url = git://github.com/dylan-lang/dylan-mode.git
+	ignore = dirty
 [submodule "common/lisp/emacs/site-packages/redshank"]
 	path = common/lisp/emacs/site-packages/redshank
 	url = http://www.foldr.org/~michaelw/projects/redshank.git
+	ignore = dirty
+[submodule "common/lisp/emacs/site-packages/js2-mode"]
+	path = common/lisp/emacs/site-packages/js2-mode
+	url = git://github.com/mooz/js2-mode.git
+	ignore = dirty
+[submodule "common/lisp/emacs/site-packages/linum"]
+	path = common/lisp/emacs/site-packages/linum
+	url = git://github.com/emacsmirror/linum.git
+	ignore = dirty
+[submodule "common/lisp/emacs/site-packages/linum-plus"]
+	path = common/lisp/emacs/site-packages/linum-plus
+	url = git://github.com/emacsmirror/linum-plus.git
+	ignore = dirty
+[submodule "common/lisp/emacs/site-packages/slime"]
+	path = common/lisp/emacs/site-packages/slime
+	url = git://github.com/nablaone/slime.git
+	ignore = dirty
