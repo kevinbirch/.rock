@@ -43,3 +43,6 @@
 	path = common/lisp/emacs/site-packages/emacs-color-theme-solarized
 	url = git://github.com/sellout/emacs-color-theme-solarized.git
 	ignore = dirty
+[submodule "common/lisp/emacs/site-packages/dylan-mode"]
+	path = common/lisp/emacs/site-packages/dylan-mode
+	url = git://github.com/dylan-lang/dylan-mode.git
