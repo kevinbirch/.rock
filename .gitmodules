@@ -24,21 +24,6 @@
 	path = common/lisp/quicklisp-client
 	url = git://github.com/quicklisp/quicklisp-client.git
 	ignore = dirty
-[submodule "common/lisp/emacs/slime"]
-	path = common/lisp/emacs/slime
-	url = git://github.com/nablaone/slime.git
-	ignore = dirty
-[submodule "common/lisp/emacs/linum"]
-	path = common/lisp/emacs/linum
-	url = git://github.com/emacsmirror/linum.git
-	ignore = dirty
-[submodule "common/lisp/emacs/linum-plus"]
-	path = common/lisp/emacs/linum-plus
-	url = git://github.com/emacsmirror/linum-plus.git
-	ignore = dirty
-[submodule "common/lisp/emacs/js2-mode"]
-	path = common/lisp/emacs/js2-mode
-	url = git://github.com/mooz/js2-mode.git
 [submodule "common/lisp/emacs/site-packages/emacs-color-theme-solarized"]
 	path = common/lisp/emacs/site-packages/emacs-color-theme-solarized
 	url = git://github.com/sellout/emacs-color-theme-solarized.git
