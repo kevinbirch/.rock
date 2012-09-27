@@ -24,6 +24,7 @@ ispell 3.3.02
 jasper 1.900.1
 jbig2dec 0.11
 jpeg 8d
+libevent 2.0.20
 libffi 3.0.11
 libgcrypt 1.5.0
 libgpg-error 1.10
@@ -50,7 +51,9 @@ rc 1.7.2
 readline 6.2.2 6.2.4
 ruby 1.9.3-p194
 sbcl 1.0.58
+smartypants 1.5.1
 sqlite 3.7.14
+tmux 1.6
 tokyo-cabinet 1.4.47
 unrar 4.2.4
 wget 1.14
