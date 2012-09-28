@@ -2,13 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CVS_RSH</key>
-	<string>ssh</string>
-	<key>MANPATH</key>
-	<string>/usr/man:/usr/local/man:/usr/share/man:/usr/X11R6/man</string>
+    <key>NLS_LANG</key>
+    <string>en_US.UTF-8</string>
+    <key>LC_ALL</key>
+    <string>en_US.UTF-8</string>
 	<key>PATH</key>
-	<string>/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/Users/kmb/bin:/usr/X11R6/bin</string>
+    <string>/Users/kmb/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin</string>
     <key>JAVA_HOME</key>
-    <string>/Library/Java/JavaVirtualMachines/1.7.0.jdk/Contents/Home</string>
+    <string>/Library/Java/JavaVirtualMachines/jdk1.7.0_06.jdk/Contents/Home</string>
 </dict>
 </plist>
