@@ -27,8 +27,12 @@
     renames = copies
     renameLimit = 100000
 
+[diff "lisp"]
+    xfuncname="^(\\((def|test).*)$"
+
 [core]
     autocrlf = input
+    attributesfile = ~/.gitattributes
 
 [github]
     user = kevinbirch
