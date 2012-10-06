@@ -174,6 +174,10 @@
   `(redshank-setup '(lisp-mode-hook
                      slime-repl-mode-hook) t))
 
+(eval-after-load "redshank"
+  '(progn
+    (setq redshank-accessor-name-function 'redshank-accessor-name/%)))
+
 ;; Dylan mode customization
 (autoload 'dylan-mode "dylan-mode" "Major mode for editing Dylan source files" t)
 
@@ -187,7 +191,6 @@
 (autoload 'js2-mode "js2-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.json$" . js-mode))
-
 
 (eval-after-load 'js
   '(progn (define-key js-mode-map "{" 'paredit-open-curly)
