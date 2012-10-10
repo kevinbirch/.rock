@@ -1,7 +1,7 @@
 
 (require :asdf)
 
-(pushnew "/Users/kmb/.lisp/" asdf:*central-registry* :test #'equal)
+(pushnew (merge-pathnames ".lisp/" (user-homedir-pathname)) asdf:*central-registry* :test #'equal)
 
 (require :asdf-install)
 
