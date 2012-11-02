@@ -215,6 +215,10 @@
 
 (require 'markdown-mode)
 
+(require 'yaml-mode)
+(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
+(add-to-list 'auto-mode-alist '("\\.yaml$" . yaml-mode))
+
 ;; Color mode customization
 (require 'color-theme)
 (require 'color-theme-solarized)
