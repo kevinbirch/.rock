@@ -48,7 +48,7 @@ function connect-dir
 {
     for f in $(ls $1)
     do
-        connect ~+/$1/$f ~/.$f
+        connect ~/$1/$f ~/.$f
     done
 }
 
@@ -108,10 +108,9 @@ maybe popd
 
 if [ -z "$email" ]; then
     read -e -p "Enter email [$USER@$HOSTNAME]: " email
-    test -z $email && email="$USER@$HOSTNAME"
 fi
 
 say "setting up ~/.gitconfig.host with user.email=$email"
-maybe git config --file ~/.gitconfig.host user.email $email
+maybe git config --file ~/.gitconfig.host user.email ${email:-$USER@$HOSTNAME}
 
 

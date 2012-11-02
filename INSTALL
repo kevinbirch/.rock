@@ -1,4 +1,5 @@
-# -*- markdown -*-
+-*- mode: gfm -*-
+
 Copyright (c) 2012 Kevin Birch <kmb@pobox.com>
 
 To install, simply run the included install script:
