@@ -249,7 +249,36 @@
 (define-key global-map (kbd "\C-c l") 'fume-list-functions)
 (define-key global-map (kbd "\C-c g") 'fume-prompt-function-goto)
 
-;; Set up function key shortcuts
+;; Configure Fume
+(setq fume-max-items 30
+    fume-fn-window-position 3
+    fume-auto-position-popup t
+    fume-display-in-modeline-p nil
+    fume-buffer-name "*Function List*"
+    fume-no-prompt-on-valid-default nil)
+
+;; custom functions
+
+(defun boip ()
+  "returns t if the point is at the beginning of indentation of the current line"
+  (save-excursion (skip-chars-backward " \t") (bolp)))
+
+(defun beginning-of-indentation-or-line ()
+  "move the point to the beginning of the indentation or the line"
+  (interactive)
+  (cond ((bolp)
+         (back-to-indentation))
+        ((boip)
+         (beginning-of-line))
+        (t
+         (back-to-indentation))))
+
+(defun current-word-manual ()
+  "display the man page for the library function under the point"
+  (interactive)
+  (manual-entry (current-word)))
+
+; Set up function key shortcuts
 (global-set-key [f2] 'make-frame)
 (global-set-key [f3] 'delete-frame)
 (global-set-key [f4] 'kill-this-buffer)
@@ -265,14 +294,10 @@
 (global-set-key [f9] 'cvs-examine-other-window)
 
 (global-set-key [(meta control i)] 'c-indent-line-or-region)
-
-;; Configure Fume
-(setq fume-max-items 30
-    fume-fn-window-position 3
-    fume-auto-position-popup t
-    fume-display-in-modeline-p nil
-    fume-buffer-name "*Function List*"
-    fume-no-prompt-on-valid-default nil)
+(global-set-key [(shift control j)] 'join-line)
+(global-set-key [(control a)] 'beginning-of-indentation-or-line)
+(global-set-key [(meta g)] 'goto-line)
+(global-set-key [(control q)] 'current-word-manual)
 
 ;; Grab all the files I was working on in the last session
 ;; (load "desktop")
