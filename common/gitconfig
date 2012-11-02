@@ -43,3 +43,7 @@
 [include]
     path = ~/.gitconfig.host
 
+[hub]
+	protocol = https
+[push]
+	default = simple
