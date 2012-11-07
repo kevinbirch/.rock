@@ -40,10 +40,11 @@
 [user]
     name = kevin birch
 
-[include]
-    path = ~/.gitconfig.host
-
 [hub]
 	protocol = https
+
 [push]
-	default = simple
+	default = current
+
+[include]
+    path = ~/.gitconfig.host
