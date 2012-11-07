@@ -1,4 +1,6 @@
 
+.DS_Store
+
 *~
 common/lisp/emacs/elpa/
 !common/lisp/emacs/elpa/package.el
