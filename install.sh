@@ -1,9 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 VERBOSE=0
 DRY_RUN=0
 
-DIR=$(dirname $0)
+DIR=$(cd $(dirname $0); pwd -P)
 
 function usage
 {
@@ -48,7 +48,7 @@ function connect-dir
 {
     for f in $(ls $1)
     do
-        connect ~/$1/$f ~/.$f
+        connect $1/$f ~/.$f
     done
 }
 
@@ -83,14 +83,14 @@ done
 cd $DIR
 
 say "linking common files"
-connect-dir common
+connect-dir $DIR/common
 
 say "linking platform specific files"
 # get the OS name in portable way, make it lower case and drop everything after an underscore or dash
 OS=$(uname -s | tr "[:upper:]" "[:lower:]" | sed 's/\([^-_]*\)[-_].*/\1/')
 
 if [ -d plaf/$OS ]; then
-    connect-dir plaf/$OS
+    connect-dir $DIR/plaf/$OS
 fi
 
 say "taking an excursion to $HOME"
@@ -101,7 +101,7 @@ say "returning from excursion"
 maybe popd
 
 say "fixing up quicklisp client pointers"
-maybe pushd $DIR/common/quicklisp
+maybe pushd $DIR/common/lisp/quicklisp
 connect ../quicklisp-client quicklisp
 say "done"
 maybe popd

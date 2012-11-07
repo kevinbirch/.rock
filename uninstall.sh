@@ -1,9 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 VERBOSE=0
 DRY_RUN=0
 
-DIR=$(dirname $0)
+DIR=$(cd $(dirname $0); pwd -P)
 
 function usage
 {
