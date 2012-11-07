@@ -1,5 +1,9 @@
 # -*- shell-script -*-
 # .profile - executed by default in non-bash (sh-type) shells
 
-bash
+if [ "bash" != `basename $SHELL` ]; then
+    bash
+else
+    . ~/.bash_profile
+fi
 
