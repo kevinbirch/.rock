@@ -49,6 +49,3 @@
 	path = common/lisp/emacs/site-packages/slime
 	url = git://github.com/nablaone/slime.git
 	ignore = dirty
-[submodule "dircolors-solarized"]
-	path = dircolors-solarized
-	url = https://github.com/kevinbirch/dircolors-solarized.git
