@@ -1,33 +1,33 @@
 [submodule "common/vim/bundle/vim-markdown"]
 	path = common/vim/bundle/vim-markdown
-	url = git://github.com/tpope/vim-markdown.git
+	url = https://github.com/tpope/vim-markdown.git
 [submodule "common/vim/bundle/vim-fugitive"]
 	path = common/vim/bundle/vim-fugitive
-	url = git://github.com/tpope/vim-fugitive.git
+	url = https://github.com/tpope/vim-fugitive.git
 [submodule "common/vim/pathogen"]
 	path = common/vim/pathogen
-	url = git://github.com/tpope/vim-pathogen.git
+	url = https://github.com/tpope/vim-pathogen.git
 [submodule "common/vim/bundle/vim-eunuch"]
 	path = common/vim/bundle/vim-eunuch
-	url = git://github.com/tpope/vim-eunuch.git
+	url = https://github.com/tpope/vim-eunuch.git
 [submodule "common/vim/bundle/vim-colors-solarized"]
 	path = common/vim/bundle/vim-colors-solarized
-	url = git://github.com/altercation/vim-colors-solarized.git
+	url = https://github.com/altercation/vim-colors-solarized.git
 [submodule "common/lisp/quicklisp"]
 	path = common/lisp/quicklisp
-	url = git://github.com/quicklisp/quicklisp-bootstrap.git
+	url = https://github.com/quicklisp/quicklisp-bootstrap.git
 	ignore = dirty
 [submodule "common/lisp/quicklisp-client"]
 	path = common/lisp/quicklisp-client
-	url = git://github.com/quicklisp/quicklisp-client.git
+	url = https://github.com/quicklisp/quicklisp-client.git
 	ignore = dirty
 [submodule "common/lisp/emacs/site-packages/emacs-color-theme-solarized"]
 	path = common/lisp/emacs/site-packages/emacs-color-theme-solarized
-	url = git://github.com/sellout/emacs-color-theme-solarized.git
+	url = https://github.com/sellout/emacs-color-theme-solarized.git
 	ignore = dirty
 [submodule "common/lisp/emacs/site-packages/dylan-mode"]
 	path = common/lisp/emacs/site-packages/dylan-mode
-	url = git://github.com/dylan-lang/dylan-mode.git
+	url = https://github.com/dylan-lang/dylan-mode.git
 	ignore = dirty
 [submodule "common/lisp/emacs/site-packages/redshank"]
 	path = common/lisp/emacs/site-packages/redshank
@@ -35,19 +35,19 @@
 	ignore = dirty
 [submodule "common/lisp/emacs/site-packages/js2-mode"]
 	path = common/lisp/emacs/site-packages/js2-mode
-	url = git://github.com/mooz/js2-mode.git
+	url = https://github.com/mooz/js2-mode.git
 	ignore = dirty
 [submodule "common/lisp/emacs/site-packages/linum"]
 	path = common/lisp/emacs/site-packages/linum
-	url = git://github.com/emacsmirror/linum.git
+	url = https://github.com/emacsmirror/linum.git
 	ignore = dirty
 [submodule "common/lisp/emacs/site-packages/linum-plus"]
 	path = common/lisp/emacs/site-packages/linum-plus
-	url = git://github.com/emacsmirror/linum-plus.git
+	url = https://github.com/emacsmirror/linum-plus.git
 	ignore = dirty
 [submodule "common/lisp/emacs/site-packages/slime"]
 	path = common/lisp/emacs/site-packages/slime
-	url = git://github.com/nablaone/slime.git
+	url = https://github.com/nablaone/slime.git
 	ignore = dirty
 [submodule "dircolors-solarized"]
 	path = dircolors-solarized
