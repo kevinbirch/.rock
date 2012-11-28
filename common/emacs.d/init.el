@@ -10,32 +10,42 @@
 (load (expand-file-name "~/.lisp/emacs/elpa/package.el"))
 (setq package-user-dir (expand-file-name "~/.lisp/emacs/elpa"))
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
 (package-initialize)
+
+(require 'expand-region)
+(require 'eldoc)
+(require 'autopair)
+(autopair-global-mode)
+(setq autopair-autowrap t)
+
+(defun push-defun-close-down (syntax pos)
+  "custom function for hanging braces alist to push the close brace down to the next line.  this is intended to be used with autopair."
+  (unless (bolp) (progn (open-line 1) (message "yow!"))))
 
 ;; This is the preferred style for my C, C++, Java and Objective C code:
 (defconst my-c-style
   '((c-tab-always-indent        . t)
 	(c-comment-only-line-offset . 0)
-	(c-hanging-braces-alist     . ((class-open after)
-				       (class-close after)
-				       (defun-open after)
-				       (defun-close after)
-				       (inline-open after)
-				       (inline-close after)
-				       (brace-list-open after)
-				       (brace-list-close after)
-				       (brace-list-intro after)
-				       (block-open . c-snug-do-while)
-				       (block-close after)
-				       (statement-case-open after)
-				       (substatement-open after)))
+	(c-hanging-braces-alist     . ((class-open . (before after))
+                                   (class-close . (before after))
+                                   (defun-open . (after before))
+                                   (defun-close . push-defun-close-down)
+                                   (inline-open . (before after))
+                                   (inline-close after)
+                                   (brace-list-open . (before after))
+                                   (brace-list-close after)
+                                   (brace-list-intro after)
+                                   (block-open . c-snug-do-while)
+                                   (block-close . push-defun-close-down)
+                                   (statement-case-open . (before after))
+                                   (substatement-open after)))
 	(c-hanging-colons-alist     . ((member-init-intro before)
 				       (inher-intro)
 				       (case-label after)
 				       (label after)
 				       (access-label after)))
 	(c-cleanup-list             . (scope-operator
-				       empty-defun-braces
 				       defun-close-semi))
 	(c-offsets-alist            . ((arglist-close . c-lineup-arglist)
 				       (substatement-open . 0)
@@ -61,7 +71,10 @@
             )
           )
 
-;; Python mode customizations
+(require 'c-eldoc)
+(add-hook 'c-mode-hook 'c-turn-on-eldoc-mode)
+
+;; python mode setup
 (add-hook 'python-mode-hook
           (lambda () 
             (delete-selection-mode t)
@@ -74,7 +87,7 @@
             )
           )
 
-;; Java mode customizations
+;; java mode setup
 (add-hook 'jde-mode-hook 
           (lambda ()
             (load-file (expand-file-name "~/.emacs.d/jde.el"))
@@ -82,21 +95,21 @@
             )
           )
 
-;; LaTeX mode customizations
+;; latex mode setup
 (add-hook 'LaTeX-mode-hook
           (lambda()
             (load-file (expand-file-name "~/.emacs.d/latex.el"))
              )
           )
 
-;; Haskell mode customizations
+;; haskell mode setup
 (add-hook 'literate-haskell-mode-hook
           (lambda()
             (load-file (expand-file-name "~/.emacs.d/latex.el"))
              )
           )
 
-;; SLIME mode setup
+;; slime mode setup
 (setq slime-lisp-implementations
       '(
         (sbcl ("sbcl") :coding-system utf-8-unix)
@@ -118,20 +131,21 @@
             )
           )
 
-;; Common Lisp mode customizations
+(add-hook 'sldb-mode-hook #'(lambda () (setq autopair-dont-activate t)))
+
+;; common lisp mode setup
 (setq common-lisp-hyperspec-root "file:///Users/kmb/Documents/eBooks/Common Lisp HyperSpec/")
 (setq browse-url-browser-function
       (lambda (url &optional new-window) 
         (message url)
         (do-applescript (concat "tell application \"Safari\" to OpenURL \"" url "\""))))
 
-(require 'slime-autoloads)
-(slime-setup '(slime-scratch slime-editing-commands))
+;; emacs lisp mode setup
+(add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
+(add-hook 'lisp-interaction-mode-hook 'turn-on-eldoc-mode)
 
-; par edit mode
+; par edit mode setup
 (autoload 'paredit-mode "paredit" "Minor mode for pseudo-structurally editing Lisp code." t)
-
-(require 'eldoc)
 
 (defvar electrify-return-match "[\]}\)\"]"
   "If this regexp matches the text after the cursor, do an \"electric\" return.")
@@ -167,7 +181,7 @@
 
 (add-hook 'slime-repl-mode-hook 'override-slime-repl-bindings-with-paredit)
 
-;; redshank configuration
+;; redshank mode setup
 (require 'redshank-loader (expand-file-name "~/.lisp/emacs/site-packages/redshank/redshank-loader"))
 
 (eval-after-load "redshank-loader"
@@ -178,7 +192,7 @@
   '(progn
     (setq redshank-accessor-name-function 'redshank-accessor-name/%)))
 
-;; Dylan mode customization
+;; dylan mode setup
 (autoload 'dylan-mode "dylan-mode" "Major mode for editing Dylan source files" t)
 
 (add-to-list 'auto-mode-alist '("\\.dylan\\'" . dylan-mode))
@@ -261,7 +275,7 @@
     fume-buffer-name "*Function List*"
     fume-no-prompt-on-valid-default nil)
 
-;; custom functions
+;; custom functions for editing actions
 
 (defun boip ()
   "returns t if the point is at the beginning of indentation of the current line"
@@ -282,7 +296,144 @@
   (interactive)
   (manual-entry (current-word)))
 
-; Set up function key shortcuts
+(defadvice kill-ring-save (before slick-copy activate compile)
+  "When called interactively with no active region, copy the current line."
+  (interactive
+   (if mark-active
+       (list (region-beginning) (region-end))
+     (progn
+       (message "The current line was copied.")
+       (list (line-beginning-position) (line-beginning-position 2))))))
+
+(defadvice kill-region (before slick-copy activate compile)
+  "When called interactively with no active region, cut the current line."
+  (interactive
+   (if mark-active
+       (list (region-beginning) (region-end))
+     (progn
+       (list (line-beginning-position) (line-beginning-position 2))))))
+
+;; this function was borrowed from the basic edit toolkit: http://www.emacswiki.org/emacs/basic-edit-toolkit.el
+(defun duplicate-line-or-region-above (&optional reverse)
+  "Duplicate current line or region above. By default, duplicate current line above. If mark is activate, duplicate region lines above. Default duplicate above, unless option REVERSE is non-nil."
+  (interactive)
+  (let ((origianl-column (current-column))
+        duplicate-content)
+    (if mark-active
+        ;; If mark active.
+        (let ((region-start-pos (region-beginning))
+              (region-end-pos (region-end)))
+          ;; Set duplicate start line position.
+          (setq region-start-pos (progn
+                                   (goto-char region-start-pos)
+                                   (line-beginning-position)))
+          ;; Set duplicate end line position.
+          (setq region-end-pos (progn
+                                 (goto-char region-end-pos)
+                                 (line-end-position)))
+          ;; Get duplicate content.
+          (setq duplicate-content (buffer-substring region-start-pos region-end-pos))
+          (if reverse
+              ;; Go to next line after duplicate end position.
+              (progn
+                (goto-char region-end-pos)
+                (forward-line +1))
+            ;; Otherwise go to duplicate start position.
+            (goto-char region-start-pos)))
+      ;; Otherwise set duplicate content equal current line.
+      (setq duplicate-content (buffer-substring
+                               (line-beginning-position)
+                               (line-end-position)))
+      ;; Just move next line when `reverse' is non-nil.
+      (and reverse (forward-line 1))
+      ;; Move to beginning of line.
+      (beginning-of-line))
+    ;; Open one line.
+    (open-line 1)
+    ;; Insert duplicate content and revert column.
+    (insert duplicate-content)
+    (move-to-column origianl-column t)))
+
+;; this function was borrowed from the basic edit toolkit: http://www.emacswiki.org/emacs/basic-edit-toolkit.el
+(defun duplicate-line-or-region-below ()
+  "Duplicate current line or region below.
+By default, duplicate current line below.
+If mark is activate, duplicate region lines below."
+  (interactive)
+  (duplicate-line-or-region-above t))
+
+;; this function was borrowed from the basic edit toolkit: http://www.emacswiki.org/emacs/basic-edit-toolkit.el
+(defun duplicate-line-above-comment (&optional reverse)
+  "Duplicate current line above, and comment current line."
+  (interactive)
+  (if reverse
+      (duplicate-line-or-region-below)
+    (duplicate-line-or-region-above))
+  (save-excursion
+    (if reverse
+        (forward-line -1)
+      (forward-line +1))
+    (comment-or-uncomment-region+)))
+
+;; this function was borrowed from the basic edit toolkit: http://www.emacswiki.org/emacs/basic-edit-toolkit.el
+(defun duplicate-line-below-comment ()
+  "Duplicate current line below, and comment current line."
+  (interactive)
+  (duplicate-line-above-comment t))
+
+;; this function was borrowed from the basic edit toolkit: http://www.emacswiki.org/emacs/basic-edit-toolkit.el
+(defun comment-or-uncomment-region+ ()
+  "This function is to comment or uncomment a line or a region."
+  (interactive)
+  (let (beg end)
+    (if mark-active
+        (progn
+          (setq beg (region-beginning))
+          (setq end (region-end)))
+      (setq beg (line-beginning-position))
+      (setq end (line-end-position)))
+    (save-excursion
+      (comment-or-uncomment-region beg end))))
+
+;; this function is borrowed from http://www.emacswiki.org/emacs/MoveText
+(defun move-text-internal (arg)
+  (cond
+   ((and mark-active transient-mark-mode)
+    (if (> (point) (mark))
+        (exchange-point-and-mark))
+    (let ((column (current-column))
+          (text (delete-and-extract-region (point) (mark))))
+      (forward-line arg)
+      (move-to-column column t)
+      (set-mark (point))
+      (insert text)
+      (exchange-point-and-mark)
+      (setq deactivate-mark nil)))
+   (t
+    (let ((column (current-column)))
+      (beginning-of-line)
+      (when (or (> arg 0) (not (bobp)))
+        (forward-line)
+        (when (or (< arg 0) (not (eobp)))
+          (transpose-lines arg))
+        (forward-line -1))
+      (move-to-column column t)))))
+
+;; this function is borrowed from http://www.emacswiki.org/emacs/MoveText
+(defun move-text-down (arg)
+  "Move region (transient-mark-mode active) or current line
+  arg lines down."
+  (interactive "*p")
+  (move-text-internal arg))
+
+;; this function is borrowed from http://www.emacswiki.org/emacs/MoveText
+(defun move-text-up (arg)
+  "Move region (transient-mark-mode active) or current line
+  arg lines up."
+  (interactive "*p")
+  (move-text-internal (- arg)))
+
+;; Set up function key shortcuts
 (global-set-key [f2] 'make-frame)
 (global-set-key [f3] 'delete-frame)
 (global-set-key [f4] 'kill-this-buffer)
@@ -295,13 +446,20 @@
 (global-set-key [(shift f6)] 'first-error)
 (global-set-key [f7] 'compile)
 (global-set-key [f8] 'gdb)
-(global-set-key [f9] 'cvs-examine-other-window)
 
 (global-set-key [(meta control i)] 'c-indent-line-or-region)
 (global-set-key [(shift control j)] 'join-line)
 (global-set-key [(control a)] 'beginning-of-indentation-or-line)
 (global-set-key [(meta g)] 'goto-line)
 (global-set-key [(control q)] 'current-word-manual)
+(global-set-key [(control meta k)] 'kill-whole-line)
+(global-unset-key [(control x) ?d])
+(global-set-key [(control x) ?d] 'duplicate-line-or-region-below)
+(global-set-key [(control x) ?D] 'duplicate-line-below-comment)
+(global-set-key [(control shift down)] 'move-text-down)
+(global-set-key [(control shift up)] 'move-text-up)
+(global-set-key [(control meta w)] 'er/expand-region)
+(global-set-key [(control meta W)] 'er/contract-region)
 
 ;; Grab all the files I was working on in the last session
 ;; (load "desktop")
@@ -322,43 +480,43 @@
 (setq user-mail-address "kmb@pobox.com")
 (setq user-organization "WebGuys Strategic Alliance")
 
-(setq user-copyright
-      (concat
-"
-  The MIT License
+;; (setq user-copyright
+;;       (concat
+;; "
+;;   The MIT License
 
-  Copyright (c) " (format-time-string "%Y") " " user-full-name " <" user-mail-address ">. Some rights reserved.
+;;   Copyright (c) " (format-time-string "%Y") " " user-full-name " <" user-mail-address ">. Some rights reserved.
 
-  Permission is hereby granted, free of charge, to any person obtaining a copy of
-  this software and associated documentation files (the \"Software\"), to deal in
-  the Software without restriction, including without limitation the rights to
-  use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
-  of the Software, and to permit persons to whom the Software is furnished to do
-  so, subject to the following conditions:
+;;   Permission is hereby granted, free of charge, to any person obtaining a copy of
+;;   this software and associated documentation files (the \"Software\"), to deal in
+;;   the Software without restriction, including without limitation the rights to
+;;   use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+;;   of the Software, and to permit persons to whom the Software is furnished to do
+;;   so, subject to the following conditions:
 
-  The above copyright notice and this permission notice shall be included in all
-  copies or substantial portions of the Software.
+;;   The above copyright notice and this permission notice shall be included in all
+;;   copies or substantial portions of the Software.
 
-  THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  SOFTWARE.
+;;   THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+;;   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+;;   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+;;   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+;;   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+;;   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+;;   SOFTWARE.
 
-  Created: " (format-time-string "%D %H:%M:%")
-))
+;;   Created: " (format-time-string "%D %H:%M:%")
+;; ))
 
 ;; This function inserts a copyright header and other information
 ;; into a source file.  The copyright is automatically grabbed
 ;; from the return value of the user-short-copyright method.
-(defun insert-header ()
-  "Insert a generic copyright notice and description for source code files."
-  (interactive)
-  (insert (user-short-copyright))
-  ;; xxx - this needs to be rewritten to understand mode-specific comment characters
-  )
+;; (defun insert-header ()
+;;   "Insert a generic copyright notice and description for source code files."
+;;   (interactive)
+;;   (insert (user-short-copyright))
+;;   ;; xxx - this needs to be rewritten to understand mode-specific comment characters
+;;   )
 
 (custom-set-variables
  '(auctex-package t)
@@ -388,6 +546,7 @@
  '(dired-package t)
  '(display-battery-mode t)
  '(display-time-mode t)
+ '(display-time-24hr-format t)
  '(ediff-package t)
  '(edit-utils-package t)
  '(efs-high-security-hosts nil)
@@ -440,6 +599,7 @@
  '(sgml-package t)
  '(sh-script-package t)
  '(show-paren-mode t)
+ '(show-paren-ring-bell-on-mismatch t)
  '(size-indication-mode t)
  '(slider-package t)
  '(sounds-au-package t)
@@ -464,6 +624,7 @@
  '(vm-package t)
  '(w3-package t)
  '(inhibit-splash-screen t)
+ '(visible-bell t)
 )
 
 (custom-set-faces
@@ -471,4 +632,4 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(default ((t (:stipple nil   :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 116 :width normal :family "DejaVu Sans Mono")))))
+ '(default ((t (:stipple nil   :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :family "DejaVu Sans Mono")))))
