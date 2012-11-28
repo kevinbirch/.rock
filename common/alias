@@ -31,7 +31,9 @@ alias vi='vim'
 alias x='exit'
 
 alias h='history | grep'
+
 alias f='find . -iname'
+alias fgrep='find . -type f | xargs grep'
 
 alias timestamp='date +"%Y-%m-%dT%H:%M:%S%z"'
 
