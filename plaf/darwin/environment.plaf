@@ -1,5 +1,4 @@
 # -*- shell-script -*-
 # .environment.plaf - environment settings for the darwin platform
 
-export JAVA_HOME=$(/usr/libexec/java_home utility --version 1.7)
 
