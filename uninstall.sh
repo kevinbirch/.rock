@@ -91,4 +91,5 @@ fi
 
 disconnect emacs
 disconnect vimrc
+disconnect gitconfig.host
 
