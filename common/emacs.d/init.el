@@ -3,7 +3,6 @@
 (add-to-list 'load-path (expand-file-name "~/.lisp/emacs/site-lisp"))
 (add-to-list 'load-path (expand-file-name "~/.lisp/emacs/site-packages/slime/contrib"))
 (add-to-list 'load-path (expand-file-name "~/.lisp/emacs/site-packages/slime"))
-(add-to-list 'load-path (expand-file-name "~/.lisp/emacs/site-packages/emacs-color-theme-solarized"))
 (add-to-list 'load-path (expand-file-name "~/.lisp/emacs/site-packages/dylan-mode"))
 
 ;; intialize and load elpa 
@@ -75,15 +74,11 @@
 (add-hook 'c-mode-hook 'c-turn-on-eldoc-mode)
 
 ;; python mode setup
+(require 'python)
 (add-hook 'python-mode-hook
           (lambda () 
             (delete-selection-mode t)
-            (turn-on-font-lock)
-            (setq fume-display-in-modeline-p nil)
-            (setq py-indent-offset 4)
-            (setq indent-tabs-mode nil)
-            (define-key py-mode-map '(return) 'newline-and-indent )
-            (define-key py-mode-map "\C-c\C-c" 'comment-region )
+            (define-key python-mode-map [(return)] 'newline-and-indent)
             )
           )
 
@@ -234,9 +229,8 @@
 (add-to-list 'auto-mode-alist '("\\.yaml$" . yaml-mode))
 
 ;; Color mode customization
-(require 'color-theme)
-(require 'color-theme-solarized)
-(color-theme-solarized-dark)
+(add-to-list 'custom-theme-load-path (expand-file-name "~/.lisp/emacs/site-packages/emacs-color-theme-solarized"))
+(load-theme 'solarized-dark t)
 (set-default 'cursor-type 'box)
 
 ;; Spelling checker customizations
@@ -583,8 +577,6 @@ If mark is activate, duplicate region lines below."
  '(os-utils-package t)
  '(package-get-require-signed-base-updates nil)
  '(paren-mode (quote blink-paren) nil (paren))
- '(pc-select-meta-moves-sexps t)
- '(pc-select-selection-keys-only t)
  '(pc-selection-mode t nil (pc-select))
  '(pcl-cvs-package t)
  '(prog-modes-package t)
@@ -607,7 +599,6 @@ If mark is activate, duplicate region lines below."
  '(speedbar-package t)
  '(strokes-package t)
  '(supercite-package t)
- '(tabbar-mode nil nil (tabbar))
  '(tab-width 4)
  '(tcl-auto-newline nil)
  '(texinfo-package t)
