@@ -52,3 +52,6 @@
 [submodule "dircolors-solarized"]
 	path = dircolors-solarized
 	url = https://github.com/kevinbirch/dircolors-solarized.git
+[submodule "common/python/site-packages/ropemacs"]
+	path = common/python/site-packages/ropemacs
+	url = https://github.com/kevinbirch/ropemacs.git
