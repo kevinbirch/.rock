@@ -1,4 +1,12 @@
 
+;; configure PATH
+(if (not (member "/usr/local/bin" exec-path))
+    (setenv "PATH" (concat (expand-file-name "~/bin") ":/usr/local/bin:/usr/local/sbin:" (getenv "PATH"))))
+
+(add-to-list 'exec-path "/usr/local/sbin")
+(add-to-list 'exec-path "/usr/local/bin")
+(add-to-list 'exec-path (expand-file-name "~/bin"))
+
 ;; add additional load paths
 (add-to-list 'load-path (expand-file-name "~/.lisp/emacs/site-lisp"))
 (add-to-list 'load-path (expand-file-name "~/.lisp/emacs/site-packages/slime/contrib"))
@@ -81,6 +89,8 @@
             (define-key python-mode-map [(return)] 'newline-and-indent)
             )
           )
+(require 'pymacs)
+;;(pymacs-load "ropemacs" "rope-")
 
 ;; java mode setup
 (add-hook 'jde-mode-hook 
