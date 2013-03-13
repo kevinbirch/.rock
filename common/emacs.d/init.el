@@ -26,6 +26,8 @@
 (autopair-global-mode)
 (setq autopair-autowrap t)
 
+(require 'flymake)
+
 (defun push-defun-close-down (syntax pos)
   "custom function for hanging braces alist to push the close brace down to the next line.  this is intended to be used with autopair."
   (unless (bolp) (progn (open-line 1) (message "yow!"))))
@@ -82,11 +84,22 @@
 (add-hook 'c-mode-hook 'c-turn-on-eldoc-mode)
 
 ;; python mode setup
+(if (equal 'darwin system-type)
+    (progn
+      (add-to-list 'exec-path "/usr/local/share/python")
+      (if (not (string-match "/usr/local/share/python*" (getenv "PATH")))
+          (setenv "PATH" (concat "/usr/local/share/python:" (getenv "PATH")))
+        )
+      )
+    )
+
 (require 'python)
+
 (add-hook 'python-mode-hook
           (lambda () 
             (delete-selection-mode t)
             (define-key python-mode-map [(return)] 'newline-and-indent)
+            (flymake-mode)
             )
           )
 
@@ -95,6 +108,17 @@
 (pymacs-load "ropemacs" "rope-")
 (setq ropemacs-enable-shortcuts nil)
 (setq ropemacs-local-prefix "C-c C-p")
+
+(defun flymake-pycheckers-init ()
+    (let* ((temp-file (flymake-init-create-temp-buffer-copy
+                       'flymake-create-temp-inplace))
+           (local-file (file-relative-name
+                        temp-file
+                        (file-name-directory buffer-file-name))))
+      (list (expand-file-name "~/bin/pycheckers") (list local-file))))
+
+(add-to-list 'flymake-allowed-file-name-masks
+               '("\\.py\\'" flymake-pycheckers-init))
 
 ;; java mode setup
 (add-hook 'jde-mode-hook 
