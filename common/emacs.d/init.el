@@ -89,8 +89,12 @@
             (define-key python-mode-map [(return)] 'newline-and-indent)
             )
           )
+
+(setenv "PYTHONPATH" (expand-file-name "~/.python/site-packages/ropemacs"))
 (require 'pymacs)
-;;(pymacs-load "ropemacs" "rope-")
+(pymacs-load "ropemacs" "rope-")
+(setq ropemacs-enable-shortcuts nil)
+(setq ropemacs-local-prefix "C-c C-p")
 
 ;; java mode setup
 (add-hook 'jde-mode-hook 
@@ -587,7 +591,6 @@ If mark is activate, duplicate region lines below."
  '(os-utils-package t)
  '(package-get-require-signed-base-updates nil)
  '(paren-mode (quote blink-paren) nil (paren))
- '(pc-selection-mode t nil (pc-select))
  '(pcl-cvs-package t)
  '(prog-modes-package t)
  '(psgml-package t)
