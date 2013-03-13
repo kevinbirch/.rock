@@ -8,7 +8,5 @@
     <string>en_US.UTF-8</string>
 	<key>PATH</key>
     <string>/Users/kmb/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin</string>
-    <key>JAVA_HOME</key>
-    <string>/Library/Java/JavaVirtualMachines/jdk1.7.0_06.jdk/Contents/Home</string>
 </dict>
 </plist>
