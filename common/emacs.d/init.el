@@ -1,4 +1,3 @@
-
 ;; configure PATH
 (if (not (member "/usr/local/bin" exec-path))
     (setenv "PATH" (concat (expand-file-name "~/bin") ":/usr/local/bin:/usr/local/sbin:" (getenv "PATH"))))
@@ -103,7 +102,6 @@
             )
           )
 
-(setenv "PYTHONPATH" (expand-file-name "~/.python/site-packages/ropemacs"))
 (require 'pymacs)
 (pymacs-load "ropemacs" "rope-")
 (setq ropemacs-enable-shortcuts nil)
