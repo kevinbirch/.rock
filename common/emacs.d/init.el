@@ -26,8 +26,19 @@
 (autopair-global-mode)
 (setq autopair-autowrap t)
 
+;; flymake configuration
 (require 'flymake)
 
+(custom-set-faces
+ '(flymake-errline ((((class color)) (:underline "red"))))
+ '(flymake-warnline ((((class color)) (:underline "yellow")))))
+
+(defun flymake-create-temp-in-system-tempdir (filename prefix)
+  (make-temp-file (or prefix "flymake")))
+
+(require 'flymake-cursor)
+
+;; global custom functions
 (defun push-defun-close-down (syntax pos)
   "custom function for hanging braces alist to push the close brace down to the next line.  this is intended to be used with autopair."
   (unless (bolp) (progn (open-line 1) (message "yow!"))))
@@ -109,16 +120,11 @@
 (setq ropemacs-enable-shortcuts nil)
 (setq ropemacs-local-prefix "C-c C-p")
 
-(defun flymake-pycheckers-init ()
-    (let* ((temp-file (flymake-init-create-temp-buffer-copy
-                       'flymake-create-temp-inplace))
-           (local-file (file-relative-name
-                        temp-file
-                        (file-name-directory buffer-file-name))))
-      (list (expand-file-name "~/bin/pycheckers") (list local-file))))
+(defun flymake-pycheck ()
+    (let* ((temp-file (flymake-init-create-temp-buffer-copy 'flymake-create-temp-in-system-tempdir)))
+      (list (expand-file-name "~/bin/pycheck") (list temp-file))))
 
-(add-to-list 'flymake-allowed-file-name-masks
-               '("\\.py\\'" flymake-pycheckers-init))
+(add-to-list 'flymake-allowed-file-name-masks '("\\.py\\'" flymake-pycheck))
 
 ;; java mode setup
 (add-hook 'jde-mode-hook 
