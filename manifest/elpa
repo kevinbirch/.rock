@@ -2,8 +2,8 @@
 autopair
 c-eldoc
 dired+
-eieio-1.4
 expand-region
+fringe-helper
 gh
 gist
 git-commit-mode
@@ -29,5 +29,7 @@ markdown-mode+
 markdown-mode
 paredit
 projectile
+pyflakes
 rainbow-delimiters
+restclient
 yaml-mode

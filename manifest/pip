@@ -1,0 +1,9 @@
+
+flake8
+httpie
+pep8
+pep8-naming
+pyflakes
+rope
+ropemacs
+ropemode
