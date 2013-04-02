@@ -1,4 +1,11 @@
 
-.ropeproject
+# OS X folder metadata
+.DS_Store
 
+# emacs edit buffer backup files
+*~
+\#*#
+
+# ide metadata files
+.ropeproject
 
