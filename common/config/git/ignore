@@ -2,10 +2,43 @@
 # OS X folder metadata
 .DS_Store
 
-# emacs edit buffer backup files
+# editor temporary files
 *~
+
+# emacs temporary files
 \#*#
 
+# vi temporary files
+.*.s[a-w][a-z]
+
 # ide metadata files
+# rope
 .ropeproject
+# intellij
+*.iws
+.idea/workspace.xml
+.idea/ant.xml
+.idea/uiDesigner.xml
+.idea/libraries
+.idea/dictionaries
+.idea/copyright
+.idea/inspectionProfiles
+.idea/scopes/scope_settings.xml
+# eclipse
+.project
+.classpath
+.settings
+.externalToolBuilders/
+maven-eclipse.xml
+# xcode
+*~.nib
+build/
+*.mode1v3
+*.mode2v3
+project.xcworkspace
+xcuserdata
+
+# build artifact directories
+target/
+build/
 
