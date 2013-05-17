@@ -9,6 +9,7 @@
     ri = rebase --interactive --autosquash
     l = log --oneline --graph --decorate --all
     undo = reset HEAD
+	g = grep --break --heading --line-number
 
 [color]
     ui = auto
@@ -49,3 +50,6 @@
 
 [include]
     path = ~/.gitconfig.host
+[grep]
+	extendRegexp = true
+	lineNumber = true
