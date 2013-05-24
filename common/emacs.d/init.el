@@ -35,10 +35,16 @@
 
 ;; flymake configuration
 (require 'flymake)
+(setq flymake-run-in-place nil)
+(setq flymake-number-of-errors-to-display nil)
+(setq flymake-check-should-restart t)
 
 (custom-set-faces
- '(flymake-errline ((((class color)) (:underline "red"))))
- '(flymake-warnline ((((class color)) (:underline "yellow")))))
+ '(default ((t (:stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :family "DejaVu Sans Mono"))))
+ '(flymake-errline ((t (:inverse-video nil :foreground nil :underline (:color "red" :style wave)))))
+ '(flymake-warnline ((t (:inverse-video nil :foreground nil :underline "yellow"))))
+ '(flymake-infoline ((t (:inverse-video nil :foreground nil :underline "blue"))))
+ )
 
 (defun flymake-create-temp-in-system-tempdir (filename prefix)
   (make-temp-file (or prefix "flymake")))
@@ -95,6 +101,7 @@
             (setq tab-width 4)
             (delete-selection-mode t)
             (setq c-recognize-knr-p nil)
+            (flymake-mode)
             )
           )
 
@@ -564,7 +571,6 @@ If mark is activate, duplicate region lines below."
 
 (custom-set-variables
  '(auctex-package t)
- '(bbdb-package t)
  '(c-echo-syntactic-information-p t)
  '(c-electric-pound-behavior (quote (alignleft)))
  '(c-indent-comments-syntactically-p t)
@@ -609,8 +615,6 @@ If mark is activate, duplicate region lines below."
  '(fsf-compat-package t)
  '(fume-max-items 50 t)
  '(fume-menubar-menu-location nil)
- '(gnus-package t)
- '(gnuserv-program (concat exec-directory "/gnuserv"))
  '(global-hl-line-mode t)
  '(global-linum-mode t)
  '(hm--html-menus-package t)
@@ -661,15 +665,6 @@ If mark is activate, duplicate region lines below."
  '(view-process-package t)
  '(viper-package t)
  '(visual-line-mode nil t)
- '(vm-package t)
- '(w3-package t)
  '(inhibit-splash-screen t)
  '(visible-bell t)
 )
-
-(custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(default ((t (:stipple nil   :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :family "DejaVu Sans Mono")))))
