@@ -54,7 +54,7 @@
 ;; global custom functions
 (defun push-defun-close-down (syntax pos)
   "custom function for hanging braces alist to push the close brace down to the next line.  this is intended to be used with autopair."
-  (unless (bolp) (progn (open-line 1) (message "yow!"))))
+  (unless (bolp) (progn (open-line 1))))
 
 ;; This is the preferred style for my C, C++, Java and Objective C code:
 (defconst my-c-style
@@ -107,6 +107,33 @@
 
 (require 'c-eldoc)
 (add-hook 'c-mode-hook 'c-turn-on-eldoc-mode)
+
+(defvar compile-dwim-command ""
+  "The most recent compile command.")
+
+;(if project-dir  default)
+(defun compile-dwim-prompt (project-dir)
+  "Prompt for the compile command"
+  (let* ((default "make ")
+         (cmd (cond ((not (equal compile-dwim-command "")) compile-dwim-command)
+                    (project-dir (concat default "-C " project-dir " "))
+                    (t default))))
+    (read-from-minibuffer "Compile command: " cmd nil nil 'compile-history)
+    )
+  )
+
+(defun compile-dwim (&optional arg)
+  "Interactive command to run compile smartly.  Prompts for the command to run if the universal argument is given or if run for the first time.  Otherwise it runs recompile.  Automatically searches for the make files in the parent directories of the source file, and runs make there by default."
+  (interactive "P")
+  (let* ((project-dir (locate-dominating-file buffer-file-name "Makefile"))
+         (orig-default-dir default-directory))
+    (if (or arg (equal compile-dwim-command ""))
+        (setq compile-dwim-command (compile-dwim-prompt project-dir)))
+    (if project-dir (setq default-directory project-dir))
+    (compile compile-dwim-command)
+    (if project-dir (setq default-directory orig-default-dir))
+    )
+  )
 
 ;; python mode setup
 (if (equal 'darwin system-type)
@@ -495,7 +522,7 @@ If mark is activate, duplicate region lines below."
 (global-set-key [f6] 'next-error)
 (global-set-key [(meta f6)] 'previous-error)
 (global-set-key [(shift f6)] 'first-error)
-(global-set-key [f7] 'compile)
+(global-set-key [f7] 'compile-dwim)
 (global-set-key [f8] 'gdb)
 
 (global-set-key [(meta control i)] 'c-indent-line-or-region)
@@ -512,19 +539,6 @@ If mark is activate, duplicate region lines below."
 (global-set-key [(control meta w)] 'er/expand-region)
 (global-set-key [(control meta W)] 'er/contract-region)
 
-;; Grab all the files I was working on in the last session
-;; (load "desktop")
-;; (setq desktop-basefilename "desktop.lisp")
-;; (setq desktop-dirname "~/.emacs.d/")
-;; (desktop-load-default)
-;; (desktop-read)
-;; (add-hook 'kill-emacs-hook
-;;           '(lambda ()
-;; 	    (desktop-truncate search-ring 3)
-;; 	    (desktop-truncate regexp-search-ring 3)
-;; 	    (desktop-save "~/.emacs.d/")
-;;             )
-;; 	  )
 
 ;; Set values for insert-header function to work
 (setq user-full-name "kevin birch")
@@ -558,16 +572,6 @@ If mark is activate, duplicate region lines below."
 
 ;;   Created: " (format-time-string "%D %H:%M:%")
 ;; ))
-
-;; This function inserts a copyright header and other information
-;; into a source file.  The copyright is automatically grabbed
-;; from the return value of the user-short-copyright method.
-;; (defun insert-header ()
-;;   "Insert a generic copyright notice and description for source code files."
-;;   (interactive)
-;;   (insert (user-short-copyright))
-;;   ;; xxx - this needs to be rewritten to understand mode-specific comment characters
-;;   )
 
 (custom-set-variables
  '(auctex-package t)
