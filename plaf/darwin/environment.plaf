@@ -1,4 +1,5 @@
 # -*- shell-script -*-
 # .environment.plaf - environment settings for the darwin platform
 
+export PATH=$PATH:/usr/local/share/python
 
