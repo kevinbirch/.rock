@@ -41,7 +41,7 @@ alias htop="htop --sort-key PERCENT_CPU -d 20 -u `whoami`"
 
 alias less="less -R"
 
-alias gl='git log --oneline --graph --decorate --all'
+alias gl="git log --graph --decorate --abbrev-commit --format='%C(yellow)%h%Creset %Cgreen%ar%Creset %Cblue%an%Creset -%C(yellow)%d%Creset %s'"
 alias gd='git diff'
 alias gs='git status'
 alias ga='git add'
