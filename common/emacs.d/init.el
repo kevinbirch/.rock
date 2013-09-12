@@ -19,6 +19,22 @@
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
 (package-initialize)
 
+(custom-set-faces
+ '(default ((t (:stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :family "DejaVu Sans Mono"))))
+ '(flymake-errline ((t (:inverse-video nil :foreground nil :underline (:color "red" :style wave)))))
+ '(flymake-warnline ((t (:inverse-video nil :foreground nil :underline "yellow"))))
+ '(flymake-infoline ((t (:inverse-video nil :foreground nil :underline "blue"))))
+ )
+
+(require 'auto-complete)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
+(require 'auto-complete-config)
+(ac-config-default)
+(add-to-list 'ac-sources 'ac-source-ropemacs)
+
+;; fill-column-indicator mode color settings, solarized dark base03
+(setq fci-rule-color "#002b36")
+
 ;; ack configuration
 (require 'ack-and-a-half)
 ;; Create shorter aliases
@@ -38,13 +54,6 @@
 (setq flymake-run-in-place nil)
 (setq flymake-number-of-errors-to-display nil)
 (setq flymake-check-should-restart t)
-
-(custom-set-faces
- '(default ((t (:stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :family "DejaVu Sans Mono"))))
- '(flymake-errline ((t (:inverse-video nil :foreground nil :underline (:color "red" :style wave)))))
- '(flymake-warnline ((t (:inverse-video nil :foreground nil :underline "yellow"))))
- '(flymake-infoline ((t (:inverse-video nil :foreground nil :underline "blue"))))
- )
 
 (defun flymake-create-temp-in-system-tempdir (filename prefix)
   (make-temp-file (or prefix "flymake")))
@@ -151,9 +160,10 @@
           (lambda () 
             (delete-selection-mode t)
             (define-key python-mode-map [(return)] 'newline-and-indent)
-            (flymake-mode)
             )
           )
+(add-hook 'python-mode-hook 'flymake-mode)
+(add-hook 'python-mode-hook 'fci-mode)
 
 (require 'pymacs)
 (pymacs-load "ropemacs" "rope-")
@@ -335,6 +345,7 @@
   )
 
 (require 'ido)
+(ido-mode t)
 
 ;; Add back in the ability to change case on regions
 (put 'upcase-region 'disabled nil)
