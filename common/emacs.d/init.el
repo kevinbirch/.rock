@@ -1,3 +1,11 @@
+;; Don't quit emacs without confirmation in gui mode
+(if (display-graphic-p)
+    (setq confirm-kill-emacs 'yes-or-no-p))
+
+;; Save our session when running in gui mode
+(if (display-graphic-p)
+    (desktop-save-mode 1))
+
 ;; configure PATH
 (if (not (member "/usr/local/bin" exec-path))
     (setenv "PATH" (concat (expand-file-name "~/bin") ":/usr/local/bin:/usr/local/sbin:" (getenv "PATH"))))
@@ -19,13 +27,29 @@
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
 (package-initialize)
 
+;; cusotmize fonts
 (custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(default ((t (:stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :family "DejaVu Sans Mono"))))
  '(flymake-errline ((t (:inverse-video nil :foreground nil :underline (:color "red" :style wave)))))
+ '(flymake-infoline ((t (:inverse-video nil :foreground nil :underline "blue"))) t)
  '(flymake-warnline ((t (:inverse-video nil :foreground nil :underline "yellow"))))
- '(flymake-infoline ((t (:inverse-video nil :foreground nil :underline "blue"))))
- )
+ '(which-func ((t nil))))
 
+;; Auto refresh buffers
+(global-auto-revert-mode)
+
+;; Also auto refresh dired, but be quiet about it
+(setq global-auto-revert-non-file-buffers t)
+(setq auto-revert-verbose nil)
+
+;; Turn on auto-compression so we can read and write .gz files
+(auto-compression-mode t)
+
+;; autoconfig
 (require 'auto-complete)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
 (require 'auto-complete-config)
@@ -34,6 +58,8 @@
 
 ;; fill-column-indicator mode color settings, solarized dark base03
 (setq fci-rule-color "#002b36")
+
+(setq ag-highlight-search t)
 
 ;; ack configuration
 (require 'ack-and-a-half)
@@ -48,6 +74,9 @@
 (require 'autopair)
 (autopair-global-mode)
 (setq autopair-autowrap t)
+
+;; globally show which function contains the point
+(which-function-mode)
 
 ;; flymake configuration
 (require 'flymake)
@@ -120,7 +149,6 @@
 (defvar compile-dwim-command ""
   "The most recent compile command.")
 
-;(if project-dir  default)
 (defun compile-dwim-prompt (project-dir)
   "Prompt for the compile command"
   (let* ((default "make ")
@@ -160,6 +188,7 @@
           (lambda () 
             (delete-selection-mode t)
             (define-key python-mode-map [(return)] 'newline-and-indent)
+            (setq fci-rule-column 80)
             )
           )
 (add-hook 'python-mode-hook 'flymake-mode)
@@ -589,6 +618,10 @@ If mark is activate, duplicate region lines below."
 )
 
 (custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(auctex-package t)
  '(c-echo-syntactic-information-p t)
  '(c-electric-pound-behavior (quote (alignleft)))
@@ -613,9 +646,8 @@ If mark is activate, duplicate region lines below."
  '(debug-package t)
  '(delete-key-deletes-forward t)
  '(dired-package t)
- '(display-battery-mode t)
- '(display-time-mode t)
  '(display-time-24hr-format t)
+ '(display-time-mode t)
  '(ediff-package t)
  '(edit-utils-package t)
  '(efs-high-security-hosts nil)
@@ -640,13 +672,14 @@ If mark is activate, duplicate region lines below."
  '(igrep-package t)
  '(ilisp-package t)
  '(indent-tabs-mode nil)
+ '(inhibit-startup-screen t)
  '(ispell-package t)
  '(jde-build-use-make t)
- '(mac-option-modifier (quote meta))
  '(mail-lib-package t)
  '(mailcrypt-package t)
  '(mew-package t)
  '(net-utils-package t)
+ '(ns-alternate-modifier (quote meta))
  '(os-utils-package t)
  '(package-get-require-signed-base-updates nil)
  '(paren-mode (quote blink-paren) nil (paren))
@@ -659,6 +692,8 @@ If mark is activate, duplicate region lines below."
  '(reftex-package t)
  '(remote-compile-prompt-for-host t)
  '(remote-compile-prompt-for-user t)
+ '(save-place t nil (saveplace))
+ '(save-place-file (expand-file-name ".places" user-emacs-directory))
  '(scroll-bar-mode nil)
  '(sgml-package t)
  '(sh-script-package t)
@@ -679,11 +714,10 @@ If mark is activate, duplicate region lines below."
  '(time-package t)
  '(tm-package t)
  '(tool-bar-mode nil nil (tool-bar))
+ '(uniquify-buffer-name-style (quote forward) nil (uniquify))
  '(vc-cc-package t)
  '(vc-package t)
  '(view-process-package t)
  '(viper-package t)
- '(visual-line-mode nil t)
- '(inhibit-splash-screen t)
  '(visible-bell t)
-)
+ '(visual-line-mode nil t))
