@@ -603,6 +603,7 @@ If mark is activate, duplicate region lines below."
 (global-set-key [(control meta w)] 'er/expand-region)
 (global-set-key [(control meta W)] 'er/contract-region)
 
+(global-set-key (kbd "C-x C-g") 'find-file-in-repository)
 
 ;; Set values for insert-header function to work
 (setq user-full-name "kevin birch")
