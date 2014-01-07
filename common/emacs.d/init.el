@@ -576,8 +576,10 @@ If mark is activate, duplicate region lines below."
   (move-text-internal (- arg)))
 
 ;; Set up function key shortcuts
-(global-set-key [f2] 'make-frame)
-(global-set-key [f3] 'delete-frame)
+(global-set-key [f3] 'highlight-symbol-at-point)
+(global-set-key [(control f3)] 'highlight-symbol-next)
+(global-set-key [(shift f3)] 'highlight-symbol-prev)
+(global-set-key [(meta f3)] 'highlight-symbol-query-replace)
 (global-set-key [f4] 'kill-this-buffer)
 
 (global-set-key [f5] 'search-forward)
