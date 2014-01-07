@@ -4,7 +4,9 @@ auto-complete
 autopair
 c-eldoc
 coffee-mode
+diff-hl
 dired+
+dired-x
 expand-region
 fill-column-indicator
 find-file-in-repository

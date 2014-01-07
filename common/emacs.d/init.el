@@ -34,8 +34,11 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :family "DejaVu Sans Mono"))))
+ '(diff-hl-insert ((t (:inherit diff-added :foreground "green4" :background "green4"))))
+ '(diff-hl-change ((t (:background "blue4" :foreground "blue4"))))
+ '(diff-hl-delete ((t (:inherit diff-removed :foreground "red4" :background "red4"))))
  '(flymake-errline ((t (:inverse-video nil :foreground nil :underline (:color "red" :style wave)))))
- '(flymake-infoline ((t (:inverse-video nil :foreground nil :underline "blue"))) t)
+ '(flymake-infoline ((t (:inverse-video nil :foreground nil :underline "blue"))))
  '(flymake-warnline ((t (:inverse-video nil :foreground nil :underline "yellow"))))
  '(which-func ((t nil))))
 
@@ -76,6 +79,8 @@
 (setq autopair-autowrap t)
 
 (require 'dired-x)
+
+(global-diff-hl-mode)
 
 ;; globally show which function contains the point
 (which-function-mode)
@@ -672,7 +677,9 @@ If mark is activate, duplicate region lines below."
  '(crisp-package t)
  '(debug-package t)
  '(delete-key-deletes-forward t)
+ '(diff-hl-draw-borders t)
  '(dired-package t)
+ '(display-battery-mode nil)
  '(display-time-24hr-format t)
  '(display-time-mode t)
  '(ediff-package t)
