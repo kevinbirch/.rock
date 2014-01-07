@@ -15,6 +15,7 @@ fill-column-indicator
 find-file-in-repository
 flymake
 flymake-cursor
+flx-ido
 gh
 gist
 git-commit-mode
@@ -23,6 +24,7 @@ gitignore-mode
 header2
 highlight-symbol
 hungry-delete
+ido
 json
 less-css-mode
 magit
