@@ -357,6 +357,9 @@
 (load-theme 'solarized-dark t)
 (set-default 'cursor-type 'box)
 
+(require 'ethan-wspace)
+(global-ethan-wspace-mode 1)
+
 ;; Spelling checker customizations
 (setq-default ispell-program-name "aspell")
 (setq-default ispell-extra-args '("--reverse")) 
