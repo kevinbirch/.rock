@@ -4,7 +4,10 @@
 
 ;; Save our session when running in gui mode
 (if (display-graphic-p)
-    (desktop-save-mode 1))
+    (progn
+      (setq desktop-path (list (expand-file-name "desktop" user-emacs-directory)))
+      (setq desktop-base-file-name "emacs.desktop")
+      (desktop-save-mode 1)))
 
 ;; configure PATH
 (if (not (member "/usr/local/bin" exec-path))
@@ -14,17 +17,16 @@
 (add-to-list 'exec-path "/usr/local/bin")
 (add-to-list 'exec-path (expand-file-name "~/bin"))
 
+(setq user-site-dir "~/.lisp/emacs")
+
 ;; add additional load paths
-(add-to-list 'load-path (expand-file-name "~/.lisp/emacs/site-lisp"))
-(add-to-list 'load-path (expand-file-name "~/.lisp/emacs/site-packages/slime/contrib"))
-(add-to-list 'load-path (expand-file-name "~/.lisp/emacs/site-packages/slime"))
-(add-to-list 'load-path (expand-file-name "~/.lisp/emacs/site-packages/dylan-mode"))
+(add-to-list 'load-path (expand-file-name "site-lisp" user-site-dir))
 
 ;; intialize and load elpa 
-(load (expand-file-name "~/.lisp/emacs/elpa/package.el"))
-(setq package-user-dir (expand-file-name "~/.lisp/emacs/elpa"))
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+(require 'package)
+(setq package-user-dir (expand-file-name "elpa" user-site-dir))
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 (package-initialize)
 
 ;; cusotmize fonts
@@ -34,9 +36,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :family "DejaVu Sans Mono"))))
- '(diff-hl-insert ((t (:inherit diff-added :foreground "green4" :background "green4"))))
  '(diff-hl-change ((t (:background "blue4" :foreground "blue4"))))
  '(diff-hl-delete ((t (:inherit diff-removed :foreground "red4" :background "red4"))))
+ '(diff-hl-insert ((t (:inherit diff-added :foreground "green4" :background "green4"))))
  '(flymake-errline ((t (:inverse-video nil :foreground nil :underline (:color "red" :style wave)))))
  '(flymake-infoline ((t (:inverse-video nil :foreground nil :underline "blue"))))
  '(flymake-warnline ((t (:inverse-video nil :foreground nil :underline "yellow"))))
@@ -54,7 +56,8 @@
 
 ;; autoconfig
 (require 'auto-complete)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
+(setq ac-comphist-file (expand-file-name "auto-complete/ac-comphist.dat" user-emacs-directory))
+(add-to-list 'ac-dictionary-directories (expand-file-name "auto-complete" user-emacs-directory))
 (require 'auto-complete-config)
 (ac-config-default)
 (add-to-list 'ac-sources 'ac-source-ropemacs)
@@ -195,11 +198,11 @@
           (lambda () 
             (delete-selection-mode t)
             (define-key python-mode-map [(return)] 'newline-and-indent)
+            (flymake-mode)
+            (fci-mode)
             (setq fci-rule-column 80)
             )
           )
-(add-hook 'python-mode-hook 'flymake-mode)
-(add-hook 'python-mode-hook 'fci-mode)
 
 (require 'pymacs)
 (pymacs-load "ropemacs" "rope-")
@@ -212,25 +215,17 @@
 
 (add-to-list 'flymake-allowed-file-name-masks '("\\.py\\'" flymake-pycheck))
 
-;; java mode setup
-(add-hook 'jde-mode-hook 
-          (lambda ()
-            (load-file (expand-file-name "~/.emacs.d/jde.el"))
-            (global-set-key [f7] 'jde-ant-build)
-            )
-          )
-
 ;; latex mode setup
 (add-hook 'LaTeX-mode-hook
           (lambda()
-            (load-file (expand-file-name "~/.emacs.d/latex.el"))
+            (load-file (expand-file-name "latex.el" user-emacs-directory))
              )
           )
 
 ;; haskell mode setup
 (add-hook 'literate-haskell-mode-hook
           (lambda()
-            (load-file (expand-file-name "~/.emacs.d/latex.el"))
+            (load-file (expand-file-name "latex.el" user-emacs-directory))
              )
           )
 
@@ -307,7 +302,7 @@
 (add-hook 'slime-repl-mode-hook 'override-slime-repl-bindings-with-paredit)
 
 ;; redshank mode setup
-(require 'redshank-loader (expand-file-name "~/.lisp/emacs/site-packages/redshank/redshank-loader"))
+(require 'redshank-loader)
 
 (eval-after-load "redshank-loader"
   `(redshank-setup '(lisp-mode-hook
@@ -359,7 +354,6 @@
 (add-to-list 'auto-mode-alist '("\\.yaml$" . yaml-mode))
 
 ;; Color mode customization
-(add-to-list 'custom-theme-load-path (expand-file-name "~/.lisp/emacs/site-packages/emacs-color-theme-solarized"))
 (load-theme 'solarized-dark t)
 (set-default 'cursor-type 'box)
 
@@ -375,7 +369,7 @@
 ;; Abbrev-mode customizations
 (setq-default abbrev-mode t)
 (setq save-abbrevs t)
-(setq abbrev-file-name (expand-file-name "~/.emacs.d/abbreviations.el"))
+(setq abbrev-file-name (expand-file-name "abbreviations.el" user-emacs-directory))
 (if (file-readable-p abbrev-file-name)
   (read-abbrev-file abbrev-file-name)
   )

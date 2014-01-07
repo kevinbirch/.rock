@@ -21,18 +21,6 @@
 	path = common/lisp/quicklisp-client
 	url = https://github.com/quicklisp/quicklisp-client.git
 	ignore = dirty
-[submodule "common/lisp/emacs/site-packages/emacs-color-theme-solarized"]
-	path = common/lisp/emacs/site-packages/emacs-color-theme-solarized
-	url = https://github.com/sellout/emacs-color-theme-solarized.git
-	ignore = dirty
-[submodule "common/lisp/emacs/site-packages/dylan-mode"]
-	path = common/lisp/emacs/site-packages/dylan-mode
-	url = https://github.com/dylan-lang/dylan-mode.git
-	ignore = dirty
-[submodule "common/lisp/emacs/site-packages/redshank"]
-	path = common/lisp/emacs/site-packages/redshank
-	url = http://www.foldr.org/~michaelw/projects/redshank.git
-	ignore = dirty
 [submodule "common/lisp/emacs/site-packages/js2-mode"]
 	path = common/lisp/emacs/site-packages/js2-mode
 	url = https://github.com/mooz/js2-mode.git
@@ -44,10 +32,6 @@
 [submodule "common/lisp/emacs/site-packages/linum-plus"]
 	path = common/lisp/emacs/site-packages/linum-plus
 	url = https://github.com/emacsmirror/linum-plus.git
-	ignore = dirty
-[submodule "common/lisp/emacs/site-packages/slime"]
-	path = common/lisp/emacs/site-packages/slime
-	url = https://github.com/nablaone/slime.git
 	ignore = dirty
 [submodule "dircolors-solarized"]
 	path = dircolors-solarized
