@@ -6,9 +6,9 @@ autopair
 c-eldoc
 diff-hl
 dired+
-dired-x
 dylan-mode
-emacs-color-theme-solarized
+color-theme
+color-theme-solarized
 ethan-wspace
 expand-region
 fill-column-indicator
