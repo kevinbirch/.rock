@@ -21,6 +21,7 @@ git-commit-mode
 gitconfig-mode
 gitignore-mode
 header2
+highlight-symbol
 hungry-delete
 json
 less-css-mode
