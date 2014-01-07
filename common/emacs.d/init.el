@@ -26,7 +26,7 @@
 (require 'package)
 (setq package-user-dir (expand-file-name "elpa" user-site-dir))
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+;; (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 (package-initialize)
 
 ;; cusotmize fonts
