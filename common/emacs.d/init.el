@@ -22,7 +22,7 @@
 ;; add additional load paths
 (add-to-list 'load-path (expand-file-name "site-lisp" user-site-dir))
 
-;; intialize and load elpa 
+;; intialize and load elpa
 (require 'package)
 (setq package-user-dir (expand-file-name "elpa" user-site-dir))
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
@@ -107,8 +107,8 @@
 ;; This is the preferred style for my C, C++, Java and Objective C code:
 (defconst my-c-style
   '((c-tab-always-indent        . t)
-	(c-comment-only-line-offset . 0)
-	(c-hanging-braces-alist     . ((class-open . (before after))
+    (c-comment-only-line-offset . 0)
+    (c-hanging-braces-alist     . ((class-open . (before after))
                                    (class-close . (before after))
                                    (defun-open . (after before))
                                    (defun-close . push-defun-close-down)
@@ -121,26 +121,26 @@
                                    (block-close . push-defun-close-down)
                                    (statement-case-open . (before after))
                                    (substatement-open after)))
-	(c-hanging-colons-alist     . ((member-init-intro before)
-				       (inher-intro)
-				       (case-label after)
-				       (label after)
-				       (access-label after)))
-	(c-cleanup-list             . (scope-operator
-				       defun-close-semi))
-	(c-offsets-alist            . ((arglist-close . c-lineup-arglist)
-				       (substatement-open . 0)
-				       (case-label        . 4)
-				       (block-open        . 0)
-				       (defun-close       . 0)
-				       (defun-open        . 0)
-				       (block-open        . 0)))
-	(c-echo-syntactic-information-p . t)
-	)
+    (c-hanging-colons-alist     . ((member-init-intro before)
+                                   (inher-intro)
+                                   (case-label after)
+                                   (label after)
+                                   (access-label after)))
+    (c-cleanup-list             . (scope-operator
+                                   defun-close-semi))
+    (c-offsets-alist            . ((arglist-close . c-lineup-arglist)
+                                   (substatement-open . 0)
+                                   (case-label        . 4)
+                                   (block-open        . 0)
+                                   (defun-close       . 0)
+                                   (defun-open        . 0)
+                                   (block-open        . 0)))
+    (c-echo-syntactic-information-p . t)
+    )
   "PERSONAL")
-     
+
 ;; C like language mode customizations
-(add-hook `c-mode-common-hook 
+(add-hook `c-mode-common-hook
           (lambda ()
             (turn-on-font-lock)
             (c-add-style "PERSONAL" my-c-style t)
@@ -195,7 +195,7 @@
 (require 'python)
 
 (add-hook 'python-mode-hook
-          (lambda () 
+          (lambda ()
             (delete-selection-mode t)
             (define-key python-mode-map [(return)] 'newline-and-indent)
             (flymake-mode)
@@ -240,7 +240,7 @@
 (require 'slime)
 (slime-setup '(slime-fancy))
 
-(add-hook 'slime-mode-hook 
+(add-hook 'slime-mode-hook
           (lambda ()
             (setf lisp-indent-function 'common-lisp-indent-function)
             (setf slime-multiprocessing t)
@@ -256,7 +256,7 @@
 ;; common lisp mode setup
 (setq common-lisp-hyperspec-root "file:///Users/kmb/Documents/eBooks/Common Lisp HyperSpec/")
 (setq browse-url-browser-function
-      (lambda (url &optional new-window) 
+      (lambda (url &optional new-window)
         (message url)
         (do-applescript (concat "tell application \"Safari\" to OpenURL \"" url "\""))))
 
@@ -339,7 +339,7 @@
 (add-to-list 'auto-mode-alist '("\\.mkdn\\'" . gfm-mode))
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . gfm-mode))
 
-(add-hook 'markdown-mode-hook 
+(add-hook 'markdown-mode-hook
           (lambda()
             (setq markdown-command "markdown | smartypants")
             (setq markdown-enable-math t)
@@ -362,7 +362,7 @@
 
 ;; Spelling checker customizations
 (setq-default ispell-program-name "aspell")
-(setq-default ispell-extra-args '("--reverse")) 
+(setq-default ispell-extra-args '("--reverse"))
 
 ;; Linum mode customizations
 (require 'linum+)
@@ -627,7 +627,7 @@ If mark is activate, duplicate region lines below."
 (setq mit-license-notice
 "
  Distributed under an [MIT-style][license] license.
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy of
  this software and associated documentation files (the \"Software\"), to deal with
  the Software without restriction, including without limitation the rights to
