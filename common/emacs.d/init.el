@@ -386,6 +386,8 @@
 (setq ido-use-faces nil)
 
 (projectile-global-mode)
+(setq projectile-known-projects-file (expand-file-name "projectile/bookmarks.eld" user-emacs-directory))
+(setq projectile-cache-file (expand-file-name "projectile/cache" user-emacs-directory))
 
 ;; Add back in the ability to change case on regions
 (put 'upcase-region 'disabled nil)
