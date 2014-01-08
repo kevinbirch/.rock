@@ -385,6 +385,8 @@
 ;; disable ido faces to see flx highlights.
 (setq ido-use-faces nil)
 
+(projectile-global-mode)
+
 ;; Add back in the ability to change case on regions
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
