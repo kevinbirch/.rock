@@ -259,7 +259,7 @@
 (setq browse-url-browser-function
       (lambda (url &optional new-window)
         (message url)
-        (do-applescript (concat "tell application \"Safari\" to OpenURL \"" url "\""))))
+        (do-applescript (concat "open location \"" url "\""))))
 
 ;; emacs lisp mode setup
 (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
@@ -417,17 +417,8 @@
 (global-set-key (kbd "C-x C-r") 'rename-current-buffer-file)
 
 ;; Set up function menu
-;; (require 'func-menu)
 (require 'ido-goto)
 (define-key global-map (kbd "C-c l") 'ido-goto)
-
-;; Configure Fume
-(setq fume-max-items 30
-    fume-fn-window-position 3
-    fume-auto-position-popup t
-    fume-display-in-modeline-p nil
-    fume-buffer-name "*Function List*"
-    fume-no-prompt-on-valid-default nil)
 
 ;; custom functions for editing actions
 
