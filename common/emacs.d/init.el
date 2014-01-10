@@ -21,6 +21,7 @@
 
 ;; add additional load paths
 (add-to-list 'load-path (expand-file-name "site-lisp" user-site-dir))
+(add-to-list 'load-path (expand-file-name "custom" user-emacs-directory))
 
 ;; intialize and load elpa
 (require 'package)
@@ -417,8 +418,8 @@
 
 ;; Set up function menu
 ;; (require 'func-menu)
-(define-key global-map (kbd "\C-c l") 'fume-list-functions)
-(define-key global-map (kbd "\C-c g") 'fume-prompt-function-goto)
+(require 'ido-goto)
+(define-key global-map (kbd "\C-c g") 'ido-goto)
 
 ;; Configure Fume
 (setq fume-max-items 30
