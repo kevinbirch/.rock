@@ -419,7 +419,7 @@
 ;; Set up function menu
 ;; (require 'func-menu)
 (require 'ido-goto)
-(define-key global-map (kbd "\C-c g") 'ido-goto)
+(define-key global-map (kbd "C-c l") 'ido-goto)
 
 ;; Configure Fume
 (setq fume-max-items 30
