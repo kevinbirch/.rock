@@ -1,4 +1,4 @@
-;;; ido-goto.el --- ido imenu tag selection within a buffer
+;;; ido-goto.el --- select Imenu tags for a buffer using IDO completion
 ;;
 ;; Copyright (c) 2014 Kevin Birch
 ;; Author: kevin birch <kmb@pobox.com>
