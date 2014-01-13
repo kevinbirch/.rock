@@ -174,3 +174,14 @@ If mark is activate, duplicate region lines below."
           (set-buffer-modified-p nil)
           (message "File '%s' successfully renamed to '%s'"
                    name (file-name-nondirectory new-name)))))))
+
+(defun copy-buffer-file-name ()
+  (interactive)
+  (kill-new buffer-file-name))
+
+(defun copy-buffer-relative-file-name ()
+  (interactive)
+  (let ((project-root (locate-dominating-file default-directory ".git")))
+    (if project-root
+        (kill-new (substring buffer-file-name (string-width project-root)))
+      (copy-buffer-file-name))))
