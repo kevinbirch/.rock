@@ -5,3 +5,6 @@
 (setq desktop-path (list (expand-file-name "desktop" user-emacs-directory)))
 (setq desktop-base-file-name "emacs.desktop")
 (desktop-save-mode 1)
+
+(if (eq 'darwin system-type)
+    (toggle-frame-fullscreen))
