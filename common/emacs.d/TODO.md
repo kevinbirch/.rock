@@ -83,3 +83,4 @@
 * can customize variables be set with some command other than setq?
   * http://www.emacswiki.org/emacs/cus-edit+.el
 * fuzzy selection narrowing for auto-complete popup?
+* sentry client? http://sentry.readthedocs.org/en/latest/developer/client/index.html
