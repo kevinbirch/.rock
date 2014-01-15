@@ -23,6 +23,7 @@
   * http://www.reddit.com/r/emacs/comments/1umzxo/full_persistent_minibuffer_history_it_was_built/
 * back/forward navigation
   * https://github.com/gigamonkey/jumper
+* next-error should jump to fly{check,make} errors as well
 * replace flymake with flycheck
 * c-mode
   * fix style
@@ -38,6 +39,7 @@
     * rtags server inferior process
     * http://www.gnu.org/software/emacs/manual/html_node/elisp/Processes.html
     * http://www.splode.com/users/friedman/software/emacs-lisp/index.html#processes
+    * structural search/replace, refactor?
   * http://www.emacswiki.org/emacs/EmacsTags
   * https://github.com/dkogan/xcscope.el
   * cedet
