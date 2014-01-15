@@ -1,5 +1,6 @@
 ## TODO
 
+* (setq ns-use-srgb-colorspace t)
 * make a project for ido-goto
   * https://gist.github.com/kevinbirch/8344414
   * https://github.com/cask/cask
