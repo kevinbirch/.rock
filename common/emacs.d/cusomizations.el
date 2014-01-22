@@ -88,4 +88,4 @@
  '(flymake-errline ((t (:inverse-video nil :foreground nil :underline (:color "red" :style wave)))))
  '(flymake-infoline ((t (:inverse-video nil :foreground nil :underline "blue"))))
  '(flymake-warnline ((t (:inverse-video nil :foreground nil :underline "yellow"))))
- '(which-func ((t nil))))
+ '(which-func ((t (:forground nil)))))
