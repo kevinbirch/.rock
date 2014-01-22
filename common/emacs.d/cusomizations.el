@@ -4,6 +4,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ag-highlight-search t)
+ '(ag-reuse-buffers t)
+ '(ag-reuse-window t)
  '(auctex-package t)
  '(c-echo-syntactic-information-p t)
  '(c-electric-pound-behavior (quote (alignleft)))
@@ -86,6 +88,6 @@
  '(diff-hl-delete ((t (:inherit diff-removed :foreground "red4" :background "red4"))))
  '(diff-hl-insert ((t (:inherit diff-added :foreground "green4" :background "green4"))))
  '(flymake-errline ((t (:inverse-video nil :foreground nil :underline (:color "red" :style wave)))))
- '(flymake-infoline ((t (:inverse-video nil :foreground nil :underline "blue"))))
+ '(flymake-infoline ((t (:inverse-video nil :foreground nil :underline "blue"))) t)
  '(flymake-warnline ((t (:inverse-video nil :foreground nil :underline "yellow"))))
  '(which-func ((t (:forground nil)))))
