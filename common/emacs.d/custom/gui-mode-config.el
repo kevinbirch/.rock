@@ -6,5 +6,6 @@
 (setq desktop-base-file-name "emacs.desktop")
 (desktop-save-mode 1)
 
-(if (eq 'darwin system-type)
+(when (eq 'darwin system-type)
+    (setq ns-use-srgb-colorspace t)
     (toggle-frame-fullscreen))
