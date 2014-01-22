@@ -1,5 +1,5 @@
 
-(load (expand-file-name "cusomizations.el" user-emacs-directory))
+(load (expand-file-name "customizations.el" user-emacs-directory))
 
 ;; configure PATH
 (if (not (member "/usr/local/bin" exec-path))
