@@ -66,25 +66,49 @@
   (imenu--cleanup)
   (setq imenu--index-alist nil)
   (let* ((index-alist (imenu--make-index-alist))
-         (symbol-names (ido-goto/expand-symbol-names index-alist))
-         selected-symbol position)
+         (symbol-alist (ido-goto/expand-symbol-names index-alist))
+         (symbol-names (mapcar #'car symbol-alist))
+         selected-symbol
+         position)
     (setq selected-symbol (ido-completing-read "Symbol? " symbol-names))
-    (setq position (cdr (assoc selected-symbol index-alist)))
+    (setq position (cdr (assoc selected-symbol symbol-alist)))
     (unless (and (boundp 'mark-active) mark-active)
       (push-mark nil t nil))
     (if (overlayp position)
         (goto-char (overlay-start position))
       (goto-char position))))
 
-(defun ido-goto/expand-symbol-names (symbol-list)
+(defun ido-goto/expand-symbol-names (symbol-alist &optional prefix)
   (let (result)
-    (dolist (each symbol-list result)
+    (dolist (each symbol-alist result)
       (cond
        ((and (listp each) (imenu--subalist-p each))
-        (setq result (append result (ido-goto/expand-symbol-names each))))
+        ;; recursively expand sublist
+        (let* ((context (ido-goto/clean-symbol-name (car each)))
+               (context-alist (cdr each))
+               (cleaned-alist (ido-goto/expand-symbol-names context-alist context)))
+          (setq result (append result cleaned-alist))))
        ((and (not (stringp each))
              (not (equal imenu--rescan-item each)))
-        (add-to-list 'result (car each) t))))))
+        ;; add cleaned up symbol name cons to result list
+        (setq result (append result (list (ido-goto/clean-symbol each prefix)))))))))
+
+(defun ido-goto/clean-symbol (symbol &optional prefix)
+  (cons (ido-goto/make-symbol-name symbol prefix)
+        (cdr symbol)))
+
+(defun ido-goto/make-symbol-name (symbol &optional prefix)
+  (let ((cleaned-name (ido-goto/clean-symbol-name (car symbol))))
+    (cond
+     ((string-match-p "[*][^*]*[*]" (car symbol))
+      prefix)
+     (prefix
+      (concat prefix "." cleaned-name))
+     (t
+      cleaned-name))))
+
+(defun ido-goto/clean-symbol-name (symbol-name)
+  (substring symbol-name 0 (string-match " (.*)" symbol-name)))
 
 (provide 'ido-goto)
 
