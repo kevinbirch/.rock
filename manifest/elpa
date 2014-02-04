@@ -36,8 +36,10 @@ popup
 projectile
 pyflakes
 pylint
+puppet-mode
 rainbow-delimiters
 redshank
+ruby-mode
 slime
 thrift
 yaml-mode
