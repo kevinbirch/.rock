@@ -34,3 +34,6 @@
 ;; Add back in the ability to change case on regions
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
+
+;; mode configurations for files where we don't have any other mode specific configuration
+(add-to-list 'auto-mode-alist '("Vagrantfile" . ruby-mode))
