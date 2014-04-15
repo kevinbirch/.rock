@@ -13,3 +13,6 @@
 (require 'linum+)
 (global-linum-mode 1)
 (setq linum-format "%d ")
+
+;; Enable window numbering mode
+(window-numbering-mode)
