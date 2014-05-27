@@ -18,6 +18,8 @@
             (fci-mode)
             (setq fci-rule-column 80)
             (setq fci-rule-color "#002b36")
+            (highlight-indentation-current-column-mode)
+            (jedi:setup)
             )
           )
 
@@ -32,4 +34,4 @@
 
 (add-to-list 'flymake-allowed-file-name-masks '("\\.py\\'" flymake-pycheck))
 
-(add-to-list 'ac-sources 'ac-source-ropemacs)
+;; (add-to-list 'ac-sources 'ac-source-ropemacs)

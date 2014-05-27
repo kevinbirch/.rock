@@ -22,9 +22,11 @@ git-commit-mode
 gitconfig-mode
 gitignore-mode
 header2
+highlight-indentation
 highlight-symbol
 hungry-delete
 ido
+jedi
 json
 less-css-mode
 magit
