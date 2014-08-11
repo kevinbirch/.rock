@@ -33,8 +33,9 @@
 
 [core]
     autocrlf = input
-    attributesfile = ~/.gitattributes
     sparsecheckout = true
+    attributesfile = ~/.gitattributes
+    excludesfile = ~/.gitignore
 
 [github]
     user = kevinbirch

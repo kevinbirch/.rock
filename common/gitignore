@@ -1,0 +1,29 @@
+# Ignore patterns applied to ALL git repos
+
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+ 
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+
+# Emacs files #
+###############
+*~
+*#
+.ropeproject/
+
+# Helper Apps #
+###############
+ngrok
+runscope-passageway
