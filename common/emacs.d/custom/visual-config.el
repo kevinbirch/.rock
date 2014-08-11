@@ -4,10 +4,10 @@
 (load-theme 'solarized-dark t)
 (set-default 'cursor-type 'box)
 
-(require 'ethan-wspace)
-(global-ethan-wspace-mode 1)
+;(require 'ethan-wspace)
+;(global-ethan-wspace-mode 1)
 ;; ethan-wspace-mode doesn't work for makefiles, they require tabs
-(add-hook 'makefile-mode-hook (lambda () (ethan-wspace-mode 0)))
+;(add-hook 'makefile-mode-hook (lambda () (ethan-wspace-mode 0)))
 
 ;; Linum mode customizations
 (require 'linum+)
