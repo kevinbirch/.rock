@@ -5,6 +5,3 @@
 common/lisp/emacs/elpa/
 !common/lisp/emacs/elpa/package.el
 
-common/emacs.d/url
-common/emacs.d/ac-dict
-common/emacs.d/.python-environments
