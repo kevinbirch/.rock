@@ -34,4 +34,14 @@
 
 (add-to-list 'flymake-allowed-file-name-masks '("\\.py\\'" flymake-pycheck))
 
+;; from https://github.com/nayefc/dotfiles/blob/master/emacs/.emacs.d/languages.el
+(defun python-add-breakpoint ()
+  "Add python breakpoint."
+  (interactive)
+  (move-beginning-of-line nil)
+  (indent-for-tab-command)
+  (insert "import ipdb; ipdb.set_trace()")
+  (newline-and-indent))
+;; (define-key python-mode-map (kbd "C-c t") 'python-add-breakpoint)
+
 ;; (add-to-list 'ac-sources 'ac-source-ropemacs)
