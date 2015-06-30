@@ -43,3 +43,6 @@
 
 ;; mode configurations for files where we don't have any other mode specific configuration
 (add-to-list 'auto-mode-alist '("Vagrantfile" . ruby-mode))
+
+;; crazy magit config thingy
+(setq magit-last-seen-setup-instructions "1.4.0")
