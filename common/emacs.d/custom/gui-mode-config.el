@@ -8,4 +8,5 @@
 
 (when (eq 'darwin system-type)
     (setq ns-use-srgb-colorspace t)
-    (toggle-frame-fullscreen))
+    )
+
