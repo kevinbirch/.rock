@@ -1,7 +1,7 @@
 (global-diff-hl-mode)
 
 ;; Color mode customization
-(load-theme 'solarized-dark t)
+(load-theme 'solarized t)
 (set-default 'cursor-type 'box)
 
 ;; Linum mode customizations
