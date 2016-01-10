@@ -15,8 +15,6 @@ flymake-cursor
 flx-ido
 gh
 gist
-git-commit-mode
-git-rebase-mode
 gitconfig-mode
 gitignore-mode
 graphvis-dot-mode
