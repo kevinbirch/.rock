@@ -10,6 +10,7 @@
 (global-set-key [(meta f5)] 'search-backward)
 (global-set-key [(shift f5)] 'query-replace)
 (global-set-key [f6] 'next-error)
+(global-set-key [control f6] 'flymake-goto-next-error)
 (global-set-key [(meta f6)] 'previous-error)
 (global-set-key [(shift f6)] 'first-error)
 (global-set-key [f7] 'compile-dwim)
