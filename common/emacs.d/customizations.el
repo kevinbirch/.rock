@@ -77,7 +77,6 @@
  '(vc-package t)
  '(view-process-package t)
  '(viper-package t)
- '(visible-bell t)
  '(visual-line-mode nil t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
