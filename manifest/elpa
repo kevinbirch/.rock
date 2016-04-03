@@ -5,6 +5,7 @@ auto-complete
 autopair
 c-eldoc
 color-theme-solarized
+dash-at-point
 diff-hl
 dired+
 dylan-mode
