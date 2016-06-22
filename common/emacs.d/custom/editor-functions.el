@@ -185,3 +185,20 @@ If mark is activate, duplicate region lines below."
     (if project-root
         (kill-new (substring buffer-file-name (string-width project-root)))
       (copy-buffer-file-name))))
+
+(defun unsnake ()
+  "converts the current-word from snake_case to CamelCase, preserving initial capitalization"
+  (interactive)
+  (let ((case-fold-search nil)
+        (parts (split-string (current-word) "_"))
+        (bounds (bounds-of-thing-at-point 'word))
+        result)
+    (setq result
+          (concat (if (string-match-p "\\`[a-z]" (car parts))
+                     (downcase (car parts))
+                   (capitalize (downcase (car parts))))
+                  (mapconcat (lambda (word) (capitalize (downcase word)))
+                             (cdr parts) "")))
+    (save-excursion
+      (delete-region (car bounds) (cdr bounds))
+      (insert result))))
