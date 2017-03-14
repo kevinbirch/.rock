@@ -24,14 +24,14 @@ set visible-stats on
 set completion-ignore-case on
 set completion-prefix-display-length 4
 set skip-completed-text on
-set show-all-if-modified on
+set show-all-if-unmodified on
 set print-completions-horizontally on
-set mark-symlinked directories on
+set mark-symlinked-directories on
 set mark-directories on
 set mark-modified-lines on
 
 # ask before displaying more than 100 completions
-set completion-query-item 100
+set completion-query-items 100
 
 set page-completions on
 
