@@ -18,6 +18,8 @@ gh
 gist
 gitconfig-mode
 gitignore-mode
+go-autocomplete
+go-guru
 graphvis-dot-mode
 header2
 highlight-indentation
