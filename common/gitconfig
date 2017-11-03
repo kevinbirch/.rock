@@ -51,6 +51,13 @@
 
 [include]
     path = ~/.gitconfig.host
+
 [grep]
 	extendRegexp = true
 	lineNumber = true
+
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+
+[commit]
+	gpgsign = true
