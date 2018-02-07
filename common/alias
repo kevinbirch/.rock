@@ -50,3 +50,5 @@ alias gca='git commit --amend'
 alias gco='git checkout'
 alias gb='git branch'
 alias gri='git rebase -i'
+
+alias pwgen="rando -c 6 -a 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_@[{}]().,_;:/#^~$%|' 32"
