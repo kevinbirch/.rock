@@ -52,9 +52,6 @@
             )
           )
 
-(require 'c-eldoc)
-(add-hook 'c-mode-hook 'c-turn-on-eldoc-mode)
-
 (defvar compile-dwim-command ""
   "The most recent compile command.")
 
