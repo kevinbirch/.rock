@@ -39,6 +39,7 @@
  '(fsf-compat-package t)
  '(global-display-line-numbers-mode t)
  '(global-hl-line-mode t)
+ '(horizontal-scroll-bar-mode nil)
  '(igrep-package t)
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
