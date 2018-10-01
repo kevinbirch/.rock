@@ -13,6 +13,7 @@
 [submodule "common/vim/bundle/vim-colors-solarized"]
 	path = common/vim/bundle/vim-colors-solarized
 	url = https://github.com/altercation/vim-colors-solarized.git
+	ignore = dirty
 [submodule "common/lisp/quicklisp"]
 	path = common/lisp/quicklisp
 	url = https://github.com/quicklisp/quicklisp-bootstrap.git
@@ -21,18 +22,12 @@
 	path = common/lisp/quicklisp-client
 	url = https://github.com/quicklisp/quicklisp-client.git
 	ignore = dirty
+[submodule "dircolors-solarized"]
+	path = dircolors-solarized
+	url = https://github.com/kevinbirch/dircolors-solarized.git
+	ignore = dirty
 [submodule "common/lisp/emacs/site-packages/js2-mode"]
 	path = common/lisp/emacs/site-packages/js2-mode
 	url = https://github.com/mooz/js2-mode.git
 	ignore = dirty
-[submodule "common/lisp/emacs/site-packages/linum"]
-	path = common/lisp/emacs/site-packages/linum
-	url = https://github.com/emacsmirror/linum.git
-	ignore = dirty
-[submodule "common/lisp/emacs/site-packages/linum-plus"]
-	path = common/lisp/emacs/site-packages/linum-plus
-	url = https://github.com/emacsmirror/linum-plus.git
-	ignore = dirty
-[submodule "dircolors-solarized"]
-	path = dircolors-solarized
-	url = https://github.com/kevinbirch/dircolors-solarized.git
+
