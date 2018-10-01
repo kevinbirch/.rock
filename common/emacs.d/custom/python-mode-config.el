@@ -23,14 +23,14 @@
             )
           )
 
-(require 'pymacs)
-(pymacs-load "ropemacs" "rope-")
-(setq ropemacs-enable-shortcuts nil)
-(setq ropemacs-local-prefix "C-c C-p")
+;; (require 'pymacs)
+;; (pymacs-load "ropemacs" "rope-")
+;; (setq ropemacs-enable-shortcuts nil)
+;; (setq ropemacs-local-prefix "C-c C-p")
 
-(defun flymake-pycheck ()
-    (let* ((temp-file (flymake-init-create-temp-buffer-copy 'flymake-create-temp-in-system-tempdir)))
-      (list (expand-file-name "~/bin/pycheck") (list temp-file))))
+;; (defun flymake-pycheck ()
+;;     (let* ((temp-file (flymake-init-create-temp-buffer-copy 'flymake-create-temp-in-system-tempdir)))
+;;       (list (expand-file-name "~/bin/pycheck") (list temp-file))))
 
 (add-to-list 'flymake-allowed-file-name-masks '("\\.py\\'" flymake-pycheck))
 

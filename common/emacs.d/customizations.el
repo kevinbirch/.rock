@@ -55,7 +55,7 @@
  '(package-get-require-signed-base-updates nil)
  '(package-selected-packages
    (quote
-    (flycheck lsp-mode rg yaml-mode window-numbering thrift slime redshank rainbow-delimiters pymacs pylint pyflakes projectile paredit markdown-mode+ magit-push-remote less-css-mode ido-ubiquitous hungry-delete highlight-symbol highlight-indentation header2 gitignore-mode gitconfig-mode gist flymake-cursor flymake flx-ido find-file-in-repository fill-column-indicator expand-region dylan-mode dired+ diff-hl dash-at-point color-theme-solarized cache c-eldoc autopair auto-highlight-symbol auto-complete ag ack-and-a-half)))
+    (protobuf-mode color-theme date-at-point dired-collapse dired-subtree flx flx-isearch gh gitlab gitlab-ci-mode go-autocomplete go-guru go-impl go-imports go-mode go-rename go-scratch go-stacktracer go-tag god-mode golint graphviz-dot-mode highlight highlight-indent-guides magit magit-filenotify markdown-mode markdown-preview-mode popup popup-complete popup-imenu popup-switcher pyimport flycheck lsp-mode rg yaml-mode window-numbering thrift slime redshank rainbow-delimiters pymacs pylint pyflakes projectile paredit markdown-mode+ magit-push-remote less-css-mode ido-ubiquitous hungry-delete highlight-symbol highlight-indentation header2 gitignore-mode gitconfig-mode gist flymake-cursor flymake flx-ido find-file-in-repository fill-column-indicator expand-region dylan-mode dired+ diff-hl dash-at-point color-theme-solarized cache c-eldoc autopair auto-highlight-symbol auto-complete ag ack-and-a-half)))
  '(paren-mode (quote blink-paren) nil (paren))
  '(prog-modes-package t)
  '(py-align-multiline-strings-p t)
@@ -94,7 +94,7 @@
  '(diff-hl-change ((t (:background "blue4" :foreground "blue4"))))
  '(diff-hl-delete ((t (:inherit diff-removed :foreground "red4" :background "red4"))))
  '(diff-hl-insert ((t (:inherit diff-added :foreground "green4" :background "green4"))))
- '(flymake-errline ((t (:inverse-video nil :foreground nil :underline (:color "red" :style wave)))))
+ '(flymake-errline ((t (:inverse-video nil :foreground nil :underline (:color "red" :style wave)))) t)
  '(flymake-infoline ((t (:inverse-video nil :foreground nil :underline "blue"))))
- '(flymake-warnline ((t (:inverse-video nil :foreground nil :underline "yellow"))))
+ '(flymake-warnline ((t (:inverse-video nil :foreground nil :underline "yellow"))) t)
  '(which-func ((t (:forground nil)))))
