@@ -19,20 +19,8 @@
             (setq fci-rule-column 80)
             (setq fci-rule-color "#002b36")
             (highlight-indentation-current-column-mode)
-            (jedi:setup)
             )
           )
-
-;; (require 'pymacs)
-;; (pymacs-load "ropemacs" "rope-")
-;; (setq ropemacs-enable-shortcuts nil)
-;; (setq ropemacs-local-prefix "C-c C-p")
-
-;; (defun flymake-pycheck ()
-;;     (let* ((temp-file (flymake-init-create-temp-buffer-copy 'flymake-create-temp-in-system-tempdir)))
-;;       (list (expand-file-name "~/bin/pycheck") (list temp-file))))
-
-(add-to-list 'flymake-allowed-file-name-masks '("\\.py\\'" flymake-pycheck))
 
 ;; from https://github.com/nayefc/dotfiles/blob/master/emacs/.emacs.d/languages.el
 (defun python-add-breakpoint ()

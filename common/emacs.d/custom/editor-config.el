@@ -23,10 +23,6 @@
 (global-set-key "\C-x\ \C-r" 'recentf-open-files)
 
 (require 'expand-region)
-(require 'eldoc)
-(require 'autopair)
-(autopair-global-mode)
-(setq autopair-autowrap t)
 
 (require 'dired-x)
 
