@@ -22,6 +22,8 @@
 (add-to-list 'load-path (expand-file-name "site-lisp" user-site-dir))
 (add-to-list 'load-path (expand-file-name "custom" user-emacs-directory))
 
+(require 'use-package)
+
 (if (display-graphic-p)
     (load "gui-mode-config"))
 
@@ -34,7 +36,10 @@
 (defun flymake-create-temp-in-system-tempdir (filename prefix)
   (make-temp-file (or prefix "flymake")))
 
-(require 'flymake-cursor)
+(use-package flymake-diagnostic-at-point
+  :after flymake
+  :config
+  (add-hook 'flymake-mode-hook #'flymake-diagnostic-at-point-mode))
 
 (load "visual-config")
 (load "editor-config")

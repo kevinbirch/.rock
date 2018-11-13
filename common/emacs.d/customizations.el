@@ -32,6 +32,7 @@
  '(emerge-package t)
  '(eterm-package t)
  '(eudc-package t)
+ '(flymake-diagnostic-at-point-display-diagnostic-function (quote flymake-diagnostic-at-point-display-minibuffer))
  '(font-lock-mode t t (font-lock))
  '(font-lock-use-colors t)
  '(font-lock-use-fonts nil)
@@ -63,7 +64,7 @@
  '(package-get-require-signed-base-updates nil)
  '(package-selected-packages
    (quote
-    (docker docker-api docker-compose-mode lua-mode dockerfile-mode browse-at-remote git-link rmsbolt protobuf-mode color-theme date-at-point dired-collapse dired-subtree flx flx-isearch gh gitlab gitlab-ci-mode go-autocomplete go-guru go-impl go-imports go-mode go-rename go-scratch go-stacktracer go-tag god-mode golint graphviz-dot-mode highlight highlight-indent-guides magit magit-filenotify markdown-mode markdown-preview-mode popup popup-complete popup-imenu popup-switcher pyimport flycheck lsp-mode rg yaml-mode window-numbering thrift slime redshank rainbow-delimiters pymacs pylint pyflakes projectile paredit markdown-mode+ magit-push-remote less-css-mode ido-ubiquitous hungry-delete highlight-symbol highlight-indentation header2 gitignore-mode gitconfig-mode gist flymake-cursor flymake flx-ido find-file-in-repository fill-column-indicator expand-region dylan-mode dired+ diff-hl dash-at-point color-theme-solarized cache c-eldoc autopair auto-highlight-symbol auto-complete ag ack-and-a-half)))
+    (eglot use-package docker docker-api docker-compose-mode lua-mode dockerfile-mode browse-at-remote git-link rmsbolt protobuf-mode color-theme date-at-point dired-collapse dired-subtree flx flx-isearch gh gitlab gitlab-ci-mode go-autocomplete go-guru go-impl go-imports go-mode go-rename go-scratch go-stacktracer go-tag god-mode golint graphviz-dot-mode highlight highlight-indent-guides magit magit-filenotify markdown-mode markdown-preview-mode popup popup-complete popup-imenu popup-switcher pyimport flycheck lsp-mode rg yaml-mode window-numbering thrift slime redshank rainbow-delimiters pymacs pylint pyflakes projectile paredit markdown-mode+ magit-push-remote less-css-mode ido-ubiquitous hungry-delete highlight-symbol highlight-indentation header2 gitignore-mode gitconfig-mode gist flymake flx-ido find-file-in-repository fill-column-indicator expand-region dylan-mode dired+ diff-hl dash-at-point color-theme-solarized cache c-eldoc autopair auto-highlight-symbol auto-complete ag ack-and-a-half)))
  '(paren-mode (quote blink-paren) nil (paren))
  '(prog-modes-package t)
  '(py-align-multiline-strings-p t)
