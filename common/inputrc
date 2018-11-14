@@ -1,42 +1,47 @@
-
-# Allow the command prompt to wrap to the next line
-set horizontal-scroll-mode off
-
 # first tab suggests ambiguous variants
 set show-all-if-ambiguous on
 
-# bell setup
-set bell-style none
-set prefer-visible-bell
-
-# Be 8 bit clean.
+# Be 8-bit clean.
 set input-meta on
 set output-meta on
-set enable-meta-key on
-
-# To allow the use of 8bit-characters like the german umlauts, comment out
-# the line below. However this makes the meta key not work as a meta key,
-# which is annoying to those which don't need to type in 8-bit characters.
 set convert-meta off
 
+# If set to ‘visible’, Readline uses a visible bell if one is available.
+set bell-style visible
+
+# If set to ‘on’, Readline attempts to briefly move the cursor to an opening parenthesis when a closing parenthesis is inserted.
 set blink-matching-paren on
-set visible-stats on
+
+# If set to ‘on’, Readline performs filename matching and completion in a case-insensitive fashion.
 set completion-ignore-case on
-set completion-prefix-display-length 4
-set skip-completed-text on
-set show-all-if-unmodified on
-set print-completions-horizontally on
-set mark-symlinked-directories on
-set mark-directories on
-set mark-modified-lines on
 
 # ask before displaying more than 100 completions
 set completion-query-items 100
 
-set page-completions on
+# The length in characters of the common prefix of a list of possible completions that is displayed without modification.
+set completion-prefix-display-length 4
 
-set editing-mode emacs
-  
-set keymap emacs-meta
-p:previous-history
-n:next-history
+# This variable, when set to ‘on’, causes Readline to display an asterisk (‘*’) at the start of history lines which have been modified.
+set mark-modified-lines on
+
+# If set to ‘on’, completed names which are symbolic links to directories have a slash appended (subject to the value of mark-directories).
+set mark-symlinked-directories on
+
+# If set to ‘on’, Readline will display completions with matches sorted horizontally in alphabetical order, rather than down the screen.
+set print-completions-horizontally on
+
+# If set to ‘on’, words which have more than one possible completion cause the matches to be listed immediately instead of ringing the bell.
+set show-all-if-ambiguous on
+
+# If set to ‘on’, words which have more than one possible completion without any possible partial completion (the possible completions don’t share a common prefix) cause the matches to be listed immediately instead of ringing the bell.
+set show-all-if-unmodified on
+
+# If enabled, readline does not insert characters from the completion that match characters after point in the word being completed, so portions of the word following the cursor are not duplicated.
+set skip-completed-text on
+
+# If set to ‘on’, a character denoting a file’s type is appended to the filename when listing possible completions.
+set visible-stats on
+
+# Customize key mappings
+"\ep":previous-history
+"\en":next-history
