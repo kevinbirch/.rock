@@ -27,6 +27,7 @@ highlight-indentation
 highlight-symbol
 hungry-delete
 ido
+ido-completing-read+
 lua-mode
 magit
 markdown-mode
