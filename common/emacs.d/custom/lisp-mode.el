@@ -20,8 +20,6 @@
             )
           )
 
-(add-hook 'sldb-mode-hook #'(lambda () (setq autopair-dont-activate t)))
-
 ;; common lisp mode setup
 (setq common-lisp-hyperspec-root "file:///Users/kmb/Documents/eBooks/Common Lisp HyperSpec/")
 (setq browse-url-browser-function

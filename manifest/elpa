@@ -1,5 +1,4 @@
 auto-complete
-autopair
 color-theme-solarized
 dash-at-point
 diff-hl
@@ -12,6 +11,7 @@ editorconfig
 editorconfig-charset-extras
 eglot
 expand-region
+feature-mode
 fill-column-indicator
 find-file-in-repository
 flx-ido

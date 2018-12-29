@@ -1,6 +1,6 @@
 ;; global custom functions
 (defun push-defun-close-down (syntax pos)
-  "custom function for hanging braces alist to push the close brace down to the next line.  this is intended to be used with autopair."
+  "custom function for hanging braces alist to push the close brace down to the next line."
   (unless (bolp) (progn (open-line 1))))
 
 ;; This is the preferred style for my C, C++, Java and Objective C code:
